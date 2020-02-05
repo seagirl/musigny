@@ -3,7 +3,8 @@
 THIS IS NOT IMPLEMENTED YET
 
 ``` bash
-$ musigny generate app/user/get-users.usecase
+$ musigny generate app/usecase/user/get-users.usecase
+$ musigny generate app/repository/user.repository
 $ musigny generate domain/entity/user
 $ musigny generate web/adapter/user/get-users.adapter
 $ musigny generate web/adapter/user/translator

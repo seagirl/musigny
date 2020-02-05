@@ -1,16 +1,18 @@
 import commander from 'commander'
 
 enum Type {
-  usecase    = 'usecase',
-  entity     = 'entity',
-  adapter    = 'adapter',
-  controller = 'controller',
-  presenter  = 'presenter',
-  translator = 'translator',
-  viewModel  = 'view-model',
-  builder    = 'builder',
-  repository = 'repository',
-  unknown    = 'unknown',
+  entity              = 'entity',
+  factory             = 'factory',
+  usecase             = 'usecase',
+  repositoryInterface = 'repository-interface',
+  adapter             = 'adapter',
+  controller          = 'controller',
+  presenter           = 'presenter',
+  translator          = 'translator',
+  viewModel           = 'view-model',
+  builder             = 'builder',
+  repository          = 'repository',
+  unknown             = 'unknown',
 }
 
 function typeFromName (name: string): Type {
@@ -27,10 +29,14 @@ function typeFromName (name: string): Type {
   }
 
   switch (lastNameFlagments) {
-    case Type.usecase:
-      return Type.usecase
     case Type.entity:
       return Type.entity
+    case Type.factory:
+      return Type.factory
+    case Type.usecase:
+      return Type.usecase
+    case Type.repositoryInterface:
+      return Type.repositoryInterface
     case Type.adapter:
       return Type.adapter
     case Type.controller:
@@ -39,9 +45,14 @@ function typeFromName (name: string): Type {
       return Type.presenter
     case Type.translator:
       return Type.translator
+    case Type.viewModel:
+      return Type.viewModel
     case Type.builder:
       return Type.builder
     case Type.repository:
+      if (name.includes('app/')) {
+        return Type.repositoryInterface
+      }
       return Type.repository
   }
 
