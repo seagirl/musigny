@@ -1,4 +1,4 @@
-export class BasicEntity {
+export class MusignyBasicEntity {
   constructor (
     public id: number,
   ) {}
