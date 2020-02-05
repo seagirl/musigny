@@ -3,10 +3,10 @@
 THIS IS NOT IMPLEMENTED YET
 
 ``` bash
-$ musigny app/user/get-users.usecase
-$ musigny domain/entity/user
-$ musigny web/adapter/user/get-users
-$ musigny web/adapter/user/translator
-$ musigny web/builder/member.builder
-$ musigny db/repository/member.repository
+$ musigny generate app/user/get-users.usecase
+$ musigny generate domain/entity/user
+$ musigny generate web/adapter/user/get-users.adapter
+$ musigny generate web/adapter/user/translator
+$ musigny generate web/builder/member.builder
+$ musigny generate db/repository/member.repository
 ```
