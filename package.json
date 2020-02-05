@@ -3,7 +3,7 @@
   "description": "Boilerplate Generator for TypeScript with Clean Architecture",
   "version": "0.0.1",
   "main": "index.js",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": "yoshizu",
   "bin": "bin/musigny",
   "scripts": {
