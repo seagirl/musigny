@@ -1,5 +1,14 @@
 import commander from 'commander'
 
+enum Category {
+  domain  = 'domain',
+  app     = 'app',
+  web     = 'web',
+  db      = 'db',
+  ext     = 'ext',
+  unknown = 'unknown',
+}
+
 enum Type {
   entity              = 'entity',
   factory             = 'factory',
@@ -15,58 +24,130 @@ enum Type {
   unknown             = 'unknown',
 }
 
-function typeFromName (name: string): Type {
-  const pathFlagments = name.split('/')
-  const lastPathFlagment = pathFlagments.pop()
-  if (lastPathFlagment == null) {
-    return Type.unknown
+class Target {
+  constructor (
+    public readonly path: string,
+    public readonly category: Category,
+    public readonly type: Type,
+    public readonly name: string
+  ) {}
+
+  toString (): string {
+    return `{
+      path: ${this.path},
+      category: ${this.category},
+      type: ${this.type},
+      name: ${this.name}
+    }`
+  }
+}
+
+class TargetFactory {
+  static createFromPath (path: string): Target {
+    return new Target(
+      path,
+      this.categoryFromPath(path),
+      this.typeFromPath(path),
+      this.nameFromPath(path)
+    )
   }
 
-  const nameFlagments = lastPathFlagment.split('.')
-  const lastNameFlagments = nameFlagments.pop()
-  if (lastNameFlagments == null) {
-    return Type.unknown
+  private static nameFromPath (path: string): string {
+    const pathFlagments = path.split('/')
+    const lastPathFlagment = pathFlagments.pop()
+    if (lastPathFlagment == null) {
+      throw new Error('name not found')
+    }
+
+    const nameFlagments = lastPathFlagment.split('.')
+    const lastNameFlagment = nameFlagments.pop()
+    if (lastNameFlagment == null) {
+      throw new Error('name not found')
+    }
+
+    const name = nameFlagments.pop()
+    if (name == null) {
+      throw new Error('name not found')
+    }
+
+    return name
   }
 
-  switch (lastNameFlagments) {
-    case Type.entity:
-      return Type.entity
-    case Type.factory:
-      return Type.factory
-    case Type.usecase:
-      return Type.usecase
-    case Type.repositoryInterface:
-      return Type.repositoryInterface
-    case Type.adapter:
-      return Type.adapter
-    case Type.controller:
-      return Type.controller
-    case Type.presenter:
-      return Type.presenter
-    case Type.translator:
-      return Type.translator
-    case Type.viewModel:
-      return Type.viewModel
-    case Type.builder:
-      return Type.builder
-    case Type.repository:
-      if (name.includes('app/')) {
+  private static categoryFromPath (path: string): Category {
+    const pathFlagments = path.split('/')
+    const firstPathFlagment = pathFlagments.shift()
+    if (firstPathFlagment == null) {
+      return Category.unknown
+    }
+
+    switch (firstPathFlagment) {
+      case Category.domain:
+        return Category.domain
+      case Category.app:
+        return Category.app
+      case Category.web:
+        return Category.web
+      case Category.db:
+        return Category.db
+      case Category.ext:
+        return Category.ext
+    }
+
+    return Category.unknown
+  }
+
+  private static typeFromPath (path: string): Type {
+    const pathFlagments = path.split('/')
+    const lastPathFlagment = pathFlagments.pop()
+    if (lastPathFlagment == null) {
+      return Type.unknown
+    }
+
+    const nameFlagments = lastPathFlagment.split('.')
+    const lastNameFlagment = nameFlagments.pop()
+    if (lastNameFlagment == null) {
+      return Type.unknown
+    }
+
+    switch (lastNameFlagment) {
+      case Type.entity:
+        return Type.entity
+      case Type.factory:
+        return Type.factory
+      case Type.usecase:
+        return Type.usecase
+      case Type.repositoryInterface:
         return Type.repositoryInterface
-      }
-      return Type.repository
-  }
+      case Type.adapter:
+        return Type.adapter
+      case Type.controller:
+        return Type.controller
+      case Type.presenter:
+        return Type.presenter
+      case Type.translator:
+        return Type.translator
+      case Type.viewModel:
+        return Type.viewModel
+      case Type.builder:
+        return Type.builder
+      case Type.repository:
+        if (path.includes('app/')) {
+          return Type.repositoryInterface
+        }
+        return Type.repository
+    }
 
-  return Type.unknown
+    return Type.unknown
+  }
 }
 
 function main (): void {
   commander
     .version('0.0.1')
-    .command('generate [name]')
-    .action(function (name) {
-      const type = typeFromName(name)
-      console.log(`name: ${name}`)
-      console.log(`type: ${type}`)
+    .command('generate [path]')
+    .action(function (path) {
+      const target = TargetFactory.createFromPath(path)
+      console.log(`target: ${target}`)
     })
 
   commander.parse(process.argv)
