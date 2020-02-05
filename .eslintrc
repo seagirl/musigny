@@ -1,0 +1,33 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "rules": {
+    /**
+     * @description rules of eslint-plugin-prettier
+     */
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "quotes": "off",
+    "@typescript-eslint/quotes": ["error", "single"],
+    "semi": "off",
+    "@typescript-eslint/semi": ["error", "never"],
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": ["error", { "properties": "never", "allow": ["^[A-Za-z][a-zA-Za-z]+_[A-Za-z]+$"] }],
+    "@typescript-eslint/space-before-function-paren": ["error"],
+    "@typescript-eslint/no-var-requires": "error",
+    "@typescript-eslint/class-name-casing": "error"
+  },
+  "env": {
+    "jest": true
+  }
+}
