@@ -1,11 +1,13 @@
-# Boilerplate Generator for TypeScript with Clean Architecture
+# Musigny :wine_glass:
 
-THIS IS NOT IMPLEMENTED YET
+Boilerplate Generator for TypeScript with Clean Architecture
+
+!!!!!!!!!!THIS IS NOT IMPLEMENTED YET!!!!!!!!!!
 
 ``` bash
 $ musigny generate app/usecase/user/get-users.usecase
 $ musigny generate app/repository/user.repository
-$ musigny generate domain/entity/user
+$ musigny generate domain/entity/user.entity
 $ musigny generate web/adapter/user/get-users.adapter
 $ musigny generate web/adapter/user/translator
 $ musigny generate web/builder/member.builder
