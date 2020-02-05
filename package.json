@@ -1,6 +1,6 @@
 {
   "name": "musigny",
-  "description": "File Generator for TypeScript with Clean Architecture",
+  "description": "Boilerplate Generator for TypeScript with Clean Architecture",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

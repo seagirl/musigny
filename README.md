@@ -1,8 +1,5 @@
-# TypeScript Playground
-
-Blank Playground
+# Boilerplate Generator for TypeScript with Clean Architecture
 
 ``` bash
-$ yarn install
-$ yarn dev
+$ musigny
 ```
