@@ -1,6 +1,6 @@
 # Musigny :wine_glass:
 
-Boilerplate Generator for TypeScript with Clean Architecture
+Generates Boilerplate for TypeScript with Clean Architecture
 
 !!!!!!!!!!THIS IS NOT IMPLEMENTED YET!!!!!!!!!!
 
