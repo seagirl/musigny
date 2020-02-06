@@ -4,9 +4,11 @@ import { FileDownloader } from './file-downloader'
 import { TargetFactory } from './target.factory'
 import { Template } from './template'
 
-function main (): void {
+async function main (): Promise<void> {
+  const mypackage = await import('../package.json')
+
   commander
-    .version('0.0.1')
+    .version(mypackage.version)
 
   commander
     .command('init')
@@ -42,4 +44,4 @@ function main (): void {
   }
 }
 
-main()
+main().then()
