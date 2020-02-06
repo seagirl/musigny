@@ -1,7 +1,5 @@
 import commander from 'commander'
-import compressing from 'compressing'
-import fs from 'fs'
-import fetch from 'node-fetch'
+import { FileDownloader } from './file-downloader'
 import { TargetFactory } from './target.factory'
 import { Template } from './template'
 
@@ -12,21 +10,11 @@ function main (): void {
   commander
     .command('init')
     .action(function () {
-      fetch('https://github.com/seagirl/typescript-template/archive/master.zip')
-        .then(response => {
-          const filename = 'out.zip'
-          response.body.pipe(fs.createWriteStream(filename))
-
-          if (!fs.existsSync('tmp')) {
-            fs.mkdirSync('tmp')
-          }
-
-          compressing.zip.uncompress(filename, 'tmp')
-            .then(() => {
-              fs.renameSync('tmp/typescript-template-master', 'out')
-            })
-            .catch(console.log)
-        })
+      FileDownloader.donwloadAndExtract(
+        'https://github.com/seagirl/typescript-template/archive/master.zip',
+        'typescript-template-master',
+        'out'
+      )
     })
 
   commander
