@@ -15,8 +15,12 @@ export class FileDownloader {
 
         compressing.zip.uncompress(filename, 'tmp')
           .then(() => {
-            fs.renameSync('tmp/' + rootDir, destination)
-            fs.unlinkSync(filename)
+            try {
+              fs.renameSync('tmp/' + rootDir, destination)
+            } finally {
+              fs.unlinkSync(filename)
+              fs.rmdirSync('tmp')
+            }
           })
           .catch(console.log)
       })
