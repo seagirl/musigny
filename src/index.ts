@@ -32,7 +32,7 @@ async function main (): Promise<void> {
       )
 
       const template = new Template(templatePath)
-      template.renderTo(`out/src/${target.path}.ts`, target)
+      template.renderTo(`src/${target.path}.ts`, target)
 
       console.log(`created: ${target}`)
     })
