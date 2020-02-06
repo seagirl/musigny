@@ -1,8 +1,8 @@
+UNDER DEVELOPMENT
+
 # Musigny :wine_glass:
 
 Generates Boilerplate for TypeScript with Clean Architecture
-
-!!!!!!!!!!THIS IS NOT IMPLEMENTED YET!!!!!!!!!!
 
 ``` bash
 $ musigny init
