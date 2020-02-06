@@ -29,8 +29,6 @@ function main (): void {
         target.templatePath
       )
 
-      console.log(templatePath)
-
       const template = new Template(templatePath)
       template.renderTo(`out/src/${target.path}.ts`, target)
 
