@@ -27,7 +27,7 @@ async function main (): Promise<void> {
 
       const templatePath = pathIO.resolve(
         __dirname,
-        '../src/templates',
+        '../../src/templates',
         target.templatePath
       )
 
