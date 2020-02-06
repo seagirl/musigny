@@ -1,27 +1,27 @@
 import { Usecase } from '../../core'
-import { MusignyBasicRepository } from '../repository/basic.repository'
+import { MusignySecondlyNameBasicRepository } from '../repository/basic.repository'
 
-export interface MusignyBasicUseCaseInput {
+export interface MusignyPrimaryNameBasicUseCaseInput {
 }
 
-export interface MusignyBasicUseCaseOutput {
+export interface MusignyPrimaryNameBasicUseCaseOutput {
 }
 
-export interface MusignyBasicUseCaseDependency {
-  repository: MusignyBasicRepository
+export interface MusignyPrimaryNameBasicUseCaseDependency {
+  repository: MusignySecondlyNameBasicRepository
 }
 
-export interface MusignyBasicUsecase extends Usecase {
-  execute (input: MusignyBasicUseCaseInput): Promise<MusignyBasicUseCaseOutput>;
+export interface MusignyPrimaryNameBasicUsecase extends Usecase {
+  execute (input: MusignyPrimaryNameBasicUseCaseInput): Promise<MusignyPrimaryNameBasicUseCaseOutput>;
 }
 
-export class MusignyBasicInteractor implements MusignyBasicUsecase, MusignyBasicUseCaseDependency {
-  repository: MusignyBasicRepository
+export class MusignyPrimaryNameBasicInteractor implements MusignyPrimaryNameBasicUsecase, MusignyPrimaryNameBasicUseCaseDependency {
+  repository: MusignySecondlyNameBasicRepository
 
-  constructor (dependency: MusignyBasicUseCaseDependency) {
+  constructor (dependency: MusignyPrimaryNameBasicUseCaseDependency) {
   }
 
-  async execute (input: MusignyBasicUseCaseInput): Promise<MusignyBasicUseCaseOutput> {
+  async execute (input: MusignyPrimaryNameBasicUseCaseInput): Promise<MusignyPrimaryNameBasicUseCaseOutput> {
     return {}
   }
 }

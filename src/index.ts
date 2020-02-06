@@ -1,4 +1,10 @@
 import commander from 'commander'
+import fs from 'fs'
+import pathIO from 'path'
+
+enum Config {
+  basic = 'basic',
+}
 
 enum Category {
   domain  = 'domain',
@@ -29,30 +35,34 @@ class Target {
     public readonly path: string,
     public readonly category: Category,
     public readonly type: Type,
-    public readonly name: string
+    public readonly name: string,
+    public readonly name2: string,
+    public readonly config: Config = Config.basic
   ) {}
+
+  get templatePath (): string {
+    switch (this.type) {
+      case Type.usecase:
+        return `app/usecase/${this.config}.usecase.ts`
+    }
+
+    throw new Error(`Unsupported type: ${this.type}`)
+  }
 
   toString (): string {
     return `{
       path: ${this.path},
       category: ${this.category},
       type: ${this.type},
-      name: ${this.name}
+      name: ${this.name},
+      name2: ${this.name2},
+      templatePath: ${this.templatePath}
     }`
   }
 }
 
-class TargetFactory {
-  static createFromPath (path: string): Target {
-    return new Target(
-      path,
-      this.categoryFromPath(path),
-      this.typeFromPath(path),
-      this.nameFromPath(path)
-    )
-  }
-
-  private static nameFromPath (path: string): string {
+class Parser {
+  static nameFromPath (path: string): string {
     const pathFlagments = path.split('/')
     const lastPathFlagment = pathFlagments.pop()
     if (lastPathFlagment == null) {
@@ -73,7 +83,15 @@ class TargetFactory {
     return name
   }
 
-  private static categoryFromPath (path: string): Category {
+  static name2FromPath (path: string): string {
+    const pathFlagments = path.split('/')
+    pathFlagments.shift() // category
+    pathFlagments.shift() // type
+    pathFlagments.pop() // name
+    return pathFlagments.join('-')
+  }
+
+  static categoryFromPath (path: string): Category {
     const pathFlagments = path.split('/')
     const firstPathFlagment = pathFlagments.shift()
     if (firstPathFlagment == null) {
@@ -96,7 +114,7 @@ class TargetFactory {
     return Category.unknown
   }
 
-  private static typeFromPath (path: string): Type {
+  static typeFromPath (path: string): Type {
     const pathFlagments = path.split('/')
     const lastPathFlagment = pathFlagments.pop()
     if (lastPathFlagment == null) {
@@ -141,6 +159,49 @@ class TargetFactory {
   }
 }
 
+class TargetFactory {
+  static createFromPath (path: string): Target {
+    return new Target(
+      path,
+      Parser.categoryFromPath(path),
+      Parser.typeFromPath(path),
+      Parser.nameFromPath(path),
+      Parser.name2FromPath(path)
+    )
+  }
+}
+
+class Util {
+  static upperCamelCase (str: string): string {
+    str = str.charAt(0).toUpperCase() + str.slice(1)
+    return str.replace(/[-_](.)/g, function (match, group1) {
+      return group1.toUpperCase()
+    })
+  }
+}
+
+class Template {
+  constructor (
+    public templatePath: string
+  ) {}
+
+  renderTo (path: string, target: Target): void {
+    const buf = fs.readFileSync(this.templatePath)
+    let content = buf.toString()
+
+    content = content.replace(/MusignyPrimaryNameBasic/g, Util.upperCamelCase(target.name))
+    content = content.replace(/MusignySecondlyNameBasic/g, Util.upperCamelCase(target.name2))
+    content = content.replace(/basic\.repository/g, `${target.name2}.repository`)
+
+    const dir = pathIO.dirname(path)
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true })
+    }
+
+    fs.writeFileSync(path, content)
+  }
+}
+
 function main (): void {
   commander
     .version('0.0.1')
@@ -148,6 +209,9 @@ function main (): void {
     .action(function (path) {
       const target = TargetFactory.createFromPath(path)
       console.log(`target: ${target}`)
+
+      const template = new Template(`src/templates/${target.templatePath}`)
+      template.renderTo(`out/${target.path}.ts`, target)
     })
 
   commander.parse(process.argv)
