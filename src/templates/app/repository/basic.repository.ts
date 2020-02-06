@@ -8,7 +8,7 @@ export interface SearchInput {
 
 export interface MusignySecondlyNameBasicRepository extends IdentifierGenerator {
   search(input?: SearchInput): Promise<MusignySecondlyNameBasicEntity[]>;
-  find(code: string): Promise<MusignySecondlyNameBasicEntity | undefined>;
+  find(id: number): Promise<MusignySecondlyNameBasicEntity | undefined>;
   save(member: MusignySecondlyNameBasicEntity): Promise<void>;
   delete(member: MusignySecondlyNameBasicEntity): Promise<void>;
 }

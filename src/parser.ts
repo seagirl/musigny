@@ -16,7 +16,7 @@ export class Parser {
 
     const name = nameFlagments.pop()
     if (name == null) {
-      throw new Error('name not found')
+      return lastNameFlagment
     }
 
     return name

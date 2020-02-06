@@ -9,7 +9,7 @@ $ musigny generate app/usecase/user/get-users.usecase
 $ musigny generate app/repository/user.repository
 $ musigny generate domain/entity/user.entity
 $ musigny generate web/adapter/user/get-users.adapter
-$ musigny generate web/adapter/user/translator
-$ musigny generate web/builder/member.builder
-$ musigny generate db/repository/member.repository
+$ musigny generate web/adapter/user.translator
+$ musigny generate web/builder/user/get-users.builder
+$ musigny generate db/repository/user.repository
 ```

@@ -51,6 +51,18 @@ export class Target {
         return `app/repository/${this.config}.repository.ts`
       case Type.adapter:
         return `web/adapter/entity-name/${this.config}.adapter.ts`
+      case Type.controller:
+        return `web/adapter/entity-name/${this.config}.controller.ts`
+      case Type.presenter:
+        return `web/adapter/entity-name/${this.config}.presenter.ts`
+      case Type.translator:
+        return `web/adapter/${this.config}.translator.ts`
+      case Type.viewModel:
+        return `web/view-model/${this.config}.view-model.ts`
+      case Type.builder:
+        return `web/builder/entity-name/${this.config}.builder.ts`
+      case Type.repository:
+        return `db/repository/${this.config}.repository.ts`
     }
 
     throw new Error(`Unsupported type: ${this.type}`)

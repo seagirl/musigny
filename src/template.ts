@@ -21,11 +21,17 @@ export class Template {
   }
 
   replaceVariables (content: string, target: Target): string {
+    content = content.replace(/MusignySecondlyNameBasicLower/g, target.entityName)
     content = content.replace(/MusignyPrimaryNameBasic/g, Util.upperCamelCase(target.name))
     content = content.replace(/MusignySecondlyNameBasic/g, Util.upperCamelCase(target.entityName))
     content = content.replace(/\/entity-name\//g, `/${target.entityName}/`)
     content = content.replace(/basic\.repository/g, `${target.entityName}.repository`)
     content = content.replace(/basic\.entity/g, `${target.entityName}.entity`)
+    content = content.replace(/basic\.view-model/g, `${target.entityName}.view-model`)
+    content = content.replace(/basic\.factory/g, `${target.entityName}.factory`)
+    content = content.replace(/basic\.db/g, `${target.entityName}`)
+    content = content.replace(/basic\.usecase/g, `${target.name}.usecase`)
+    content = content.replace(/basic\.adapter/g, `${target.name}.adapter`)
     return content
   }
 }
