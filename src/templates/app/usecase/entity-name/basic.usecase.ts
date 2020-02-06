@@ -8,7 +8,7 @@ export interface MusignyPrimaryNameBasicUseCaseOutput {
 }
 
 export interface MusignyPrimaryNameBasicUseCaseDependency {
-  repository: MusignySecondlyNameBasicRepository
+  repository: MusignySecondlyNameBasicRepository;
 }
 
 export interface MusignyPrimaryNameBasicUsecase extends Usecase {
@@ -19,6 +19,7 @@ export class MusignyPrimaryNameBasicInteractor implements MusignyPrimaryNameBasi
   repository: MusignySecondlyNameBasicRepository
 
   constructor (dependency: MusignyPrimaryNameBasicUseCaseDependency) {
+    this.repository = dependency.repository
   }
 
   async execute (input: MusignyPrimaryNameBasicUseCaseInput): Promise<MusignyPrimaryNameBasicUseCaseOutput> {
