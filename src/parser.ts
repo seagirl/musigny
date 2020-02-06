@@ -22,7 +22,7 @@ export class Parser {
     return name
   }
 
-  static name2FromPath (path: string): string {
+  static entityNameFromPath (path: string): string {
     const pathFlagments = path.split('/')
     pathFlagments.shift() // category
     pathFlagments.shift() // type
@@ -71,6 +71,8 @@ export class Parser {
         return Type.entity
       case Type.factory:
         return Type.factory
+      case Type.valueObject:
+        return Type.valueObject
       case Type.usecase:
         return Type.usecase
       case Type.repositoryInterface:

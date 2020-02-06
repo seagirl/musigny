@@ -8,10 +8,11 @@ function main (): void {
     .command('generate [path]')
     .action(function (path) {
       const target = TargetFactory.createFromPath(path)
-      console.log(`target: ${target}`)
 
       const template = new Template(`src/templates/${target.templatePath}`)
       template.renderTo(`out/${target.path}.ts`, target)
+
+      console.log(`created: ${target}`)
     })
 
   commander.parse(process.argv)

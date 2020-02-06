@@ -1,5 +1,5 @@
-import { Usecase } from '../../core'
-import { MusignySecondlyNameBasicRepository } from '../repository/basic.repository'
+import { Usecase } from '../../../core'
+import { MusignySecondlyNameBasicRepository } from '../../repository/basic.repository'
 
 export interface MusignyPrimaryNameBasicUseCaseInput {
 }

@@ -13,7 +13,7 @@ export interface MusignySecondlyNameBasicRepository extends IdentifierGenerator 
   delete(member: MusignySecondlyNameBasicEntity): Promise<void>;
 }
 
-export class MockMusignySecondlyNameBasicRepositoryRepository implements MusignySecondlyNameBasicRepository {
+export class MockMusignySecondlyNameBasicRepository implements MusignySecondlyNameBasicRepository {
   nextIdentifier (): Promise<number> { return Promise.resolve(0) }
   search (): Promise<MusignySecondlyNameBasicEntity[]> { return Promise.resolve([]) }
   find (): Promise<MusignySecondlyNameBasicEntity | undefined> { return Promise.resolve(undefined) }
