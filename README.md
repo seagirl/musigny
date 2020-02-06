@@ -5,11 +5,12 @@ Boilerplate Generator for TypeScript with Clean Architecture
 !!!!!!!!!!THIS IS NOT IMPLEMENTED YET!!!!!!!!!!
 
 ``` bash
-$ musigny generate app/usecase/user/get-users.usecase
-$ musigny generate app/repository/user.repository
+$ musigny init
 $ musigny generate domain/entity/user.entity
-$ musigny generate web/adapter/user/get-users.adapter
-$ musigny generate web/adapter/user.translator
-$ musigny generate web/builder/user/get-users.builder
+$ musigny generate app/repository/user.repository
+$ musigny generate app/usecase/user/get-users.usecase
 $ musigny generate db/repository/user.repository
+$ musigny generate web/adapter/user.translator
+$ musigny generate web/adapter/user/get-users.adapter
+$ musigny generate web/builder/user/get-users.builder
 ```
