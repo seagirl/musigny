@@ -5,8 +5,8 @@ UNDER DEVELOPMENT
 Generates Boilerplate for TypeScript with Clean Architecture
 
 ``` bash
-musigny init
-cd out
+musigny init -o hello-musigny
+cd hello-musigny
 yarn install
 
 musigny generate domain/entity/user.entity
