@@ -31,7 +31,9 @@ export class Template {
     content = content.replace(/MusignyEntityNameBasicSnake/g, Util.snakeCase(target.entityName))
     content = content.replace(/MusignyClassNameBasic/g, Util.upperCamelCase(target.className))
     content = content.replace(/MusignyEntityNameBasic/g, Util.upperCamelCase(target.entityName))
+
     content = content.replace(/\/entity-name\//g, `/${target.entityName}/`)
+
     content = content.replace(/basic\.repository/g, `${target.entityName}.repository`)
     content = content.replace(/basic\.entity/g, `${target.entityName}.entity`)
     content = content.replace(/basic\.value-object/g, `${target.entityName}.value-object`)
