@@ -23,6 +23,7 @@ export enum Type {
   translator          = 'translator',
   viewModel           = 'view-model',
   builder             = 'builder',
+  api                 = 'api',
   repository          = 'repository',
   unknown             = 'unknown',
 }
@@ -61,6 +62,8 @@ export class Target {
         return `web/view-model/${this.config}.view-model`
       case Type.builder:
         return `web/builder/entity-name/${this.config}.builder`
+      case Type.api:
+        return `web/express/api/${this.config}.api`
       case Type.repository:
         return `db/repository/${this.config}.repository`
     }

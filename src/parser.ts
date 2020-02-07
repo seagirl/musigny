@@ -60,7 +60,11 @@ export class Parser {
     const tyoeNameFromFile = nameFlagments.shift()
     this.typeName = tyoeNameFromFile || typeNameFromPath || ''
 
-    this.entityName = pathFlagments.join('-')
+    // ToDo: This is not good but...
+    const entityName = pathFlagments.join('-')
+    if (this.typeName != entityName) {
+      this.entityName = entityName
+    }
   }
 
   parseClassName (): string {
@@ -116,6 +120,8 @@ export class Parser {
         return Type.viewModel
       case Type.builder:
         return Type.builder
+      case Type.api:
+        return Type.api
       case Type.repository:
         if (category == Category.app) {
           return Type.repositoryInterface
