@@ -40,29 +40,29 @@ export class Target {
   get templatePath (): string {
     switch (this.type) {
       case Type.entity:
-        return `domain/entity/${this.config}.entity.ts`
+        return `domain/entity/${this.config}.entity`
       case Type.factory:
-        return `domain/factory/${this.config}.factory.ts`
+        return `domain/factory/${this.config}.factory`
       case Type.valueObject:
-        return `domain/value-object/${this.config}.value-object.ts`
+        return `domain/value-object/${this.config}.value-object`
       case Type.usecase:
-        return `app/usecase/entity-name/${this.config}.usecase.ts`
+        return `app/usecase/entity-name/${this.config}.usecase`
       case Type.repositoryInterface:
-        return `app/repository/${this.config}.repository.ts`
+        return `app/repository/${this.config}.repository`
       case Type.adapter:
-        return `web/adapter/entity-name/${this.config}.adapter.ts`
+        return `web/adapter/entity-name/${this.config}.adapter`
       case Type.controller:
-        return `web/adapter/entity-name/${this.config}.controller.ts`
+        return `web/adapter/entity-name/${this.config}.controller`
       case Type.presenter:
-        return `web/adapter/entity-name/${this.config}.presenter.ts`
+        return `web/adapter/entity-name/${this.config}.presenter`
       case Type.translator:
-        return `web/adapter/${this.config}.translator.ts`
+        return `web/adapter/${this.config}.translator`
       case Type.viewModel:
-        return `web/view-model/${this.config}.view-model.ts`
+        return `web/view-model/${this.config}.view-model`
       case Type.builder:
-        return `web/builder/entity-name/${this.config}.builder.ts`
+        return `web/builder/entity-name/${this.config}.builder`
       case Type.repository:
-        return `db/repository/${this.config}.repository.ts`
+        return `db/repository/${this.config}.repository`
     }
 
     throw new Error(`Unsupported type: ${this.type}`)

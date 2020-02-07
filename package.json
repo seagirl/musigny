@@ -23,12 +23,15 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.2",
     "@types/node": "^13.7.0",
     "@types/node-emoji": "^1.8.1",
     "@types/node-fetch": "^2.5.4",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
     "eslint": "^6.8.0",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.0",
     "ts-node": "^8.5.4",
     "typeorm": "^0.2.22",
     "typescript": "^3.7.4"

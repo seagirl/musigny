@@ -2,16 +2,17 @@
   "compilerOptions": {
     "target": "ES2019",
     "module": "commonjs",
+    "moduleResolution": "node",
     "lib": [
       "esnext",
       "dom"
     ],
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "strict": true,
     "outDir": "dist",
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "resolveJsonModule": true,
+    "experimentalDecorators": true
   },
   "exclude": [
     "out",
