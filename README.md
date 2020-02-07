@@ -5,7 +5,7 @@ UNDER DEVELOPMENT
 Generates Boilerplate for TypeScript with Clean Architecture
 
 ``` bash
-musigny init -o hello-musigny
+musigny init hello-musigny
 cd hello-musigny
 yarn install
 
