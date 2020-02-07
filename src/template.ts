@@ -34,6 +34,7 @@ export class Template {
     content = content.replace(/\/entity-name\//g, `/${target.entityName}/`)
     content = content.replace(/basic\.repository/g, `${target.entityName}.repository`)
     content = content.replace(/basic\.entity/g, `${target.entityName}.entity`)
+    content = content.replace(/basic\.value-object/g, `${target.entityName}.value-object`)
     content = content.replace(/basic\.view-model/g, `${target.entityName}.view-model`)
     content = content.replace(/basic\.factory/g, `${target.entityName}.factory`)
     content = content.replace(/basic\.db/g, `${target.entityName}`)
