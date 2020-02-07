@@ -3,49 +3,48 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 
 export class FileDownloader {
-  static TMP_FILE_NAME = 'tmp'
+  static TMP_NAME = 'tmp'
+  static TMP_FILE_NAME = `${FileDownloader.TMP_NAME}.zip`
 
-  static donwloadAndExtract (url: string, rootDir: string, destination: string): void {
+  static async donwloadAndExtract (url: string, rootDir: string, destination: string): Promise<void> {
+    const filename = await this.donwloadAndSave(url, rootDir, destination)
+    await this.extract(filename, rootDir, destination)
+  }
+
+  static async donwloadAndSave (url: string, rootDir: string, destination: string): Promise<string> {
     if (fs.existsSync(destination)) {
       throw new Error(`destination "${destination}" is already exists`)
     }
 
-    fetch(url)
-      .then(response => {
-        const filename = `${FileDownloader.TMP_FILE_NAME}.zip`
-        const fileStream = fs.createWriteStream(filename)
+    const fileStream = fs.createWriteStream(FileDownloader.TMP_FILE_NAME)
 
-        fileStream.on('close', () => {
-          if (!fs.existsSync(FileDownloader.TMP_FILE_NAME)) {
-            fs.mkdirSync(FileDownloader.TMP_FILE_NAME)
-          }
+    const response = await fetch(url)
 
-          this.extract(filename, rootDir, destination)
-        })
-
-        response.body.pipe(fileStream)
+    return new Promise((resolve, reject) => {
+      fileStream.on('close', () => {
+        resolve(FileDownloader.TMP_FILE_NAME)
       })
+
+      response.body.on('error', (err) => {
+        reject(err)
+      })
+      response.body.pipe(fileStream)
+    })
   }
 
-  static extract (filename: string, rootDir: string, destination: string): void {
-    compressing.zip.uncompress(filename, FileDownloader.TMP_FILE_NAME)
-      .then(() => {
-        try {
-          fs.renameSync(FileDownloader.TMP_FILE_NAME + '/' + rootDir, destination)
-        } finally {
-          fs.unlinkSync(filename)
-          fs.rmdirSync(FileDownloader.TMP_FILE_NAME)
-        }
-      })
-      .catch(error => {
+  static async extract (filename: string, rootDir: string, destination: string): Promise<void> {
+    try {
+      await compressing.zip.uncompress(filename, FileDownloader.TMP_NAME)
+      fs.renameSync(FileDownloader.TMP_NAME + '/' + rootDir, destination)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      try {
+        fs.unlinkSync(filename)
+        fs.rmdirSync(FileDownloader.TMP_NAME)
+      } catch (error) {
         console.log(error)
-
-        try {
-          fs.unlinkSync(filename)
-          fs.rmdirSync(FileDownloader.TMP_FILE_NAME)
-        } catch (error) {
-          console.log(error)
-        }
-      })
+      }
+    }
   }
 }

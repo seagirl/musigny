@@ -12,7 +12,7 @@ async function main (): Promise<void> {
 
   commander
     .command('init')
-    .action(function () {
+    .action(() => {
       FileDownloader.donwloadAndExtract(
         'https://github.com/seagirl/typescript-template/archive/master.zip',
         'typescript-template-master',
@@ -22,7 +22,7 @@ async function main (): Promise<void> {
 
   commander
     .command('generate [path]')
-    .action(function (input) {
+    .action((input) => {
       const target = Parser.parse(input)
 
       const templatePath = path.resolve(
