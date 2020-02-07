@@ -32,10 +32,6 @@ export class Parser {
     const category = this.parseCategory()
     const type = this.parseType(category)
 
-    if (type === Type.entity) {
-      this.entityName = this.className
-    }
-
     return new Target(path, category, type, this.className, this.entityName)
   }
 
@@ -59,6 +55,11 @@ export class Parser {
     const typeNameFromPath = pathFlagments.shift()
     const tyoeNameFromFile = nameFlagments.shift()
     this.typeName = tyoeNameFromFile || typeNameFromPath || ''
+
+    // EntityName should be same as ClassName in case of Entity
+    if (this.typeName === Type.entity) {
+      this.entityName = this.className
+    }
 
     // ToDo: This is not good but...
     const entityName = pathFlagments.join('-')
