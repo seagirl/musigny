@@ -1,43 +1,65 @@
-import { Category, Type } from './target'
+import { Category, Type, Target } from './target'
 
 export class Parser {
-  static nameFromPath (path: string): string {
+  static parse (path: string): Target {
+    const parser = new Parser()
+    return parser.parse(path)
+  }
+
+  private name?: string
+  private entityName?: string
+  private categoryName?: string
+  private typeName?: string
+
+  parse (path: string): Target {
+    this.parseFlagments(path)
+
+    const name = this.parseName()
+    const entityName = this.parseEntityName()
+    const category = this.parseCategory()
+    const type = this.parseType(category)
+
+    return new Target(path, category, type, name, entityName)
+  }
+
+  parseFlagments (path: string): void {
     const pathFlagments = path.split('/')
+
     const lastPathFlagment = pathFlagments.pop()
     if (lastPathFlagment == null) {
       throw new Error('name not found')
     }
 
     const nameFlagments = lastPathFlagment.split('.')
-    const lastNameFlagment = nameFlagments.pop()
-    if (lastNameFlagment == null) {
+    const name = nameFlagments.shift()
+    if (name == null) {
+      throw new Error('name not found')
+    }
+    this.name = name
+
+    this.categoryName = pathFlagments.shift()
+
+    const typeNameFromPath = pathFlagments.shift()
+    const tyoeNameFromFile = nameFlagments.shift()
+    this.typeName = tyoeNameFromFile || typeNameFromPath || ''
+
+    this.entityName = pathFlagments.join('-')
+  }
+
+  parseName (): string {
+    if (this.name == null) {
       throw new Error('name not found')
     }
 
-    const name = nameFlagments.pop()
-    if (name == null) {
-      return lastNameFlagment
-    }
-
-    return name
+    return this.name
   }
 
-  static entityNameFromPath (path: string): string {
-    const pathFlagments = path.split('/')
-    pathFlagments.shift() // category
-    pathFlagments.shift() // type
-    pathFlagments.pop() // name
-    return pathFlagments.join('-')
+  parseEntityName (): string {
+    return this.entityName ?? ''
   }
 
-  static categoryFromPath (path: string): Category {
-    const pathFlagments = path.split('/')
-    const firstPathFlagment = pathFlagments.shift()
-    if (firstPathFlagment == null) {
-      return Category.unknown
-    }
-
-    switch (firstPathFlagment) {
+  parseCategory (): Category {
+    switch (this.categoryName) {
       case Category.domain:
         return Category.domain
       case Category.app:
@@ -53,20 +75,8 @@ export class Parser {
     return Category.unknown
   }
 
-  static typeFromPath (path: string): Type {
-    const pathFlagments = path.split('/')
-    const lastPathFlagment = pathFlagments.pop()
-    if (lastPathFlagment == null) {
-      return Type.unknown
-    }
-
-    const nameFlagments = lastPathFlagment.split('.')
-    const lastNameFlagment = nameFlagments.pop()
-    if (lastNameFlagment == null) {
-      return Type.unknown
-    }
-
-    switch (lastNameFlagment) {
+  parseType (category: Category): Type {
+    switch (this.typeName) {
       case Type.entity:
         return Type.entity
       case Type.factory:
@@ -90,7 +100,7 @@ export class Parser {
       case Type.builder:
         return Type.builder
       case Type.repository:
-        if (path.includes('app/')) {
+        if (category == Category.app) {
           return Type.repositoryInterface
         }
         return Type.repository

@@ -1,5 +1,5 @@
 import fs from 'fs'
-import pathIO from 'path'
+import path from 'path'
 import { Target } from './target'
 import { Util } from './util'
 
@@ -8,16 +8,20 @@ export class Template {
     public templatePath: string
   ) {}
 
-  renderTo (path: string, target: Target): void {
+  renderTo (outputPath: string, target: Target): void {
+    if (fs.existsSync(outputPath)) {
+      throw new Error(`outputPath "${outputPath}" is exists`)
+    }
+
     const buf = fs.readFileSync(this.templatePath)
     const content = this.replaceVariables(buf.toString(), target)
 
-    const dir = pathIO.dirname(path)
+    const dir = path.dirname(outputPath)
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true })
     }
 
-    fs.writeFileSync(path, content)
+    fs.writeFileSync(outputPath, content)
   }
 
   replaceVariables (content: string, target: Target): string {

@@ -1,8 +1,8 @@
 import commander from 'commander'
-import pathIO from 'path'
+import path from 'path'
 import { FileDownloader } from './file-downloader'
-import { TargetFactory } from './target.factory'
 import { Template } from './template'
+import { Parser } from './parser'
 
 async function main (): Promise<void> {
   const mypackage = await import('../package.json')
@@ -22,10 +22,10 @@ async function main (): Promise<void> {
 
   commander
     .command('generate [path]')
-    .action(function (path) {
-      const target = TargetFactory.createFromPath(path)
+    .action(function (input) {
+      const target = Parser.parse(input)
 
-      const templatePath = pathIO.resolve(
+      const templatePath = path.resolve(
         __dirname,
         '../../src/templates',
         target.templatePath
@@ -44,4 +44,8 @@ async function main (): Promise<void> {
   }
 }
 
-main().then()
+main()
+  .then()
+  .catch (error => {
+    console.log(error)
+  })

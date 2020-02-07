@@ -3,7 +3,11 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 
 export class FileDownloader {
-  static donwloadAndExtract(url: string, rootDir: string, destination: string): void {
+  static donwloadAndExtract (url: string, rootDir: string, destination: string): void {
+    if (fs.existsSync(destination)) {
+      throw new Error(`destination "${destination}" is already exists`)
+    }
+
     fetch(url)
       .then(response => {
         const filename = 'tmp.zip'
@@ -22,7 +26,16 @@ export class FileDownloader {
               fs.rmdirSync('tmp')
             }
           })
-          .catch(console.log)
+          .catch(error => {
+            console.log(error)
+
+            try {
+              fs.unlinkSync(filename)
+              fs.rmdirSync('tmp')
+            } catch (error) {
+              console.log(error)
+            }
+          })
       })
   }
 }
