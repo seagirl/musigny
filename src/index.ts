@@ -12,7 +12,7 @@ async function main (): Promise<void> {
     .version(mypackage.version)
 
   commander
-    .command('init <name>')
+    .command('init [name]')
     .option('-o, --output <output>')
     .action(async (input, options) => {
       const name = input || 'out'
@@ -23,13 +23,17 @@ async function main (): Promise<void> {
         name
       )
 
-      await FileDownloader.donwloadAndExtract(
-        'https://github.com/seagirl/typescript-template/archive/master.zip',
-        'typescript-template-master',
-        destination
-      )
+      try {
+        await FileDownloader.donwloadAndExtract(
+          'https://github.com/seagirl/typescript-template/archive/master.zip',
+          'typescript-template-master',
+          destination
+        )
 
-      console.log(emoji.get('wine_glass') + ' created.')
+        console.log(emoji.get('wine_glass') + ' created.')
+      } catch (error) {
+        console.log(error)
+      }
     })
 
   commander
