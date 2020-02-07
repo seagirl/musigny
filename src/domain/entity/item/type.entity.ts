@@ -1,4 +1,4 @@
-export class TypeEntity {
+export class ItemTypeEntity {
   constructor (
     public id: number,
   ) {}

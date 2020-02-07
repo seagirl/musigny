@@ -1,9 +1,14 @@
 import { Category, Type, Target } from './target'
 
+interface Options {
+  className?: string;
+  entityName?: string;
+}
+
 export class Parser {
-  static parse (path: string): Target {
+  static parse (path: string, options?: Options): Target {
     const parser = new Parser()
-    return parser.parse(path)
+    return parser.parse(path, options)
   }
 
   private className?: string
@@ -11,11 +16,19 @@ export class Parser {
   private categoryName?: string
   private typeName?: string
 
-  parse (path: string): Target {
+  parse (path: string, options?: Options): Target {
     this.parseFlagments(path)
 
     this.className = this.parseClassName()
+    if (options?.className != null) {
+      this.className = options.className
+    }
+
     this.entityName = this.parseEntityName()
+    if (options?.entityName != null) {
+      this.entityName = options.entityName
+    }
+
     const category = this.parseCategory()
     const type = this.parseType(category)
 

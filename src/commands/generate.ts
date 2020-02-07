@@ -5,12 +5,17 @@ import { Template } from '../template'
 interface Options {
   output: string;
   verbose: boolean;
+  className?: string;
+  entityName?: string;
 }
 
 export const generate = (input: string, options: Options): void => {
   const output = options.output || '.'
 
-  const target = Parser.parse(input)
+  const target = Parser.parse(input, {
+    className: options.className,
+    entityName: options.entityName
+  })
 
   const templatePath = path.resolve(
     __dirname,
