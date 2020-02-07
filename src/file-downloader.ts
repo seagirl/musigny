@@ -37,13 +37,13 @@ export class FileDownloader {
       await compressing.zip.uncompress(filename, FileDownloader.TMP_NAME)
       fs.renameSync(FileDownloader.TMP_NAME + '/' + rootDir, destination)
     } catch (error) {
-      console.log(error)
+      console.error(error)
     } finally {
       try {
         fs.unlinkSync(filename)
         fs.rmdirSync(FileDownloader.TMP_NAME)
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   }

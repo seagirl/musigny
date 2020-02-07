@@ -7,7 +7,7 @@ interface Options {
   verbose: boolean;
 }
 
-export const generate = (input: string, options: Options) => {
+export const generate = (input: string, options: Options): void => {
   const output = options.output || '.'
 
   const target = Parser.parse(input)

@@ -28,6 +28,4 @@ async function main (): Promise<void> {
 
 main()
   .then()
-  .catch (error => {
-    console.log(error)
-  })
+  .catch (console.error)

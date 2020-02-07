@@ -6,7 +6,7 @@ interface Options {
   output: string;
 }
 
-export const init = async (input: string, options: Options) => {
+export const init = async (input: string, options: Options): Promise<void> => {
   const name = input || 'out'
   const output = options.output || '.'
 
@@ -24,6 +24,6 @@ export const init = async (input: string, options: Options) => {
 
     console.log(emoji.get('wine_glass') + ' created.')
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
