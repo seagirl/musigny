@@ -25,9 +25,9 @@ export class Template {
   }
 
   replaceVariables (content: string, target: Target): string {
-    content = content.replace(/MusignySecondlyNameBasicLower/g, target.entityName)
-    content = content.replace(/MusignyPrimaryNameBasic/g, Util.upperCamelCase(target.name))
-    content = content.replace(/MusignySecondlyNameBasic/g, Util.upperCamelCase(target.entityName))
+    content = content.replace(/MusignyEntityNameBasicLower/g, target.entityName)
+    content = content.replace(/MusignyClassNameBasic/g, Util.upperCamelCase(target.name))
+    content = content.replace(/MusignyEntityNameBasic/g, Util.upperCamelCase(target.entityName))
     content = content.replace(/\/entity-name\//g, `/${target.entityName}/`)
     content = content.replace(/basic\.repository/g, `${target.entityName}.repository`)
     content = content.replace(/basic\.entity/g, `${target.entityName}.entity`)

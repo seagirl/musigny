@@ -1,16 +1,16 @@
-import { MusignyPrimaryNameBasicInteractor } from '../../../app/usecase/entity-name/basic.usecase'
+import { MusignyClassNameBasicInteractor } from '../../../app/usecase/entity-name/basic.usecase'
 import { Builder } from '../../../core'
-import { MusignySecondlyNameBasicRepository } from '../../../db/repository/basic.repository'
-import { MusignyPrimaryNameBasicController, MusignyPrimaryNameBasicPresenter } from '../../adapter/entity-name/basic.adapter'
+import { MusignyEntityNameBasicRepository } from '../../../db/repository/basic.repository'
+import { MusignyClassNameBasicController, MusignyClassNameBasicPresenter } from '../../adapter/entity-name/basic.adapter'
 
-export class MusignyPrimaryNameBasicBuilder extends Builder {
+export class MusignyClassNameBasicBuilder extends Builder {
   constructor () {
     super()
 
-    const repository = new MusignySecondlyNameBasicRepository()
-    const usecase = new MusignyPrimaryNameBasicInteractor({ repository: repository })
+    const repository = new MusignyEntityNameBasicRepository()
+    const usecase = new MusignyClassNameBasicInteractor({ repository: repository })
 
-    this.controller = new MusignyPrimaryNameBasicController(usecase)
-    this.presenter = new MusignyPrimaryNameBasicPresenter()
+    this.controller = new MusignyClassNameBasicController(usecase)
+    this.presenter = new MusignyClassNameBasicPresenter()
   }
 }

@@ -1,4 +1,4 @@
-export class MusignySecondlyNameBasicValueObject {
+export class MusignyEntityNameBasicValueObject {
   constructor (
     public readonly name: string,
   ) {}

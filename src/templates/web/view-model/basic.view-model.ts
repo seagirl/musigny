@@ -1,3 +1,3 @@
-export interface MusignySecondlyNameBasicViewModel {
+export interface MusignyEntityNameBasicViewModel {
   id: number;
 }

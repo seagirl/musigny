@@ -1,4 +1,4 @@
-export class MusignyEntityNameBasicEntity {
+export class TypeEntity {
   constructor (
     public id: number,
   ) {}

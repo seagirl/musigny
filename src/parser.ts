@@ -6,7 +6,7 @@ export class Parser {
     return parser.parse(path)
   }
 
-  private name?: string
+  private className?: string
   private entityName?: string
   private categoryName?: string
   private typeName?: string
@@ -14,12 +14,16 @@ export class Parser {
   parse (path: string): Target {
     this.parseFlagments(path)
 
-    const name = this.parseName()
-    const entityName = this.parseEntityName()
+    this.className = this.parseClassName()
+    this.entityName = this.parseEntityName()
     const category = this.parseCategory()
     const type = this.parseType(category)
 
-    return new Target(path, category, type, name, entityName)
+    if (type === Type.entity) {
+      this.entityName = this.className
+    }
+
+    return new Target(path, category, type, this.className, this.entityName)
   }
 
   parseFlagments (path: string): void {
@@ -27,15 +31,15 @@ export class Parser {
 
     const lastPathFlagment = pathFlagments.pop()
     if (lastPathFlagment == null) {
-      throw new Error('name not found')
+      throw new Error('className not found')
     }
 
     const nameFlagments = lastPathFlagment.split('.')
-    const name = nameFlagments.shift()
-    if (name == null) {
-      throw new Error('name not found')
+    const className = nameFlagments.shift()
+    if (className == null) {
+      throw new Error('className not found')
     }
-    this.name = name
+    this.className = className
 
     this.categoryName = pathFlagments.shift()
 
@@ -46,12 +50,12 @@ export class Parser {
     this.entityName = pathFlagments.join('-')
   }
 
-  parseName (): string {
-    if (this.name == null) {
-      throw new Error('name not found')
+  parseClassName (): string {
+    if (this.className == null) {
+      throw new Error('className not found')
     }
 
-    return this.name
+    return this.className
   }
 
   parseEntityName (): string {

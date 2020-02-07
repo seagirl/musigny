@@ -1,12 +1,12 @@
-import { MusignyPrimaryNameBasicUseCaseOutput } from '../../../app/usecase/entity-name/basic.usecase'
+import { MusignyClassNameBasicUseCaseOutput } from '../../../app/usecase/entity-name/basic.usecase'
 import { Presenter } from '../../../core'
 
-interface MusignyPrimaryNameBasicPresenterOutput {
+interface MusignyClassNameBasicPresenterOutput {
   response: string;
 }
 
-export class MusignyPrimaryNameBasicPresenter implements Presenter {
-  present (input: MusignyPrimaryNameBasicUseCaseOutput): MusignyPrimaryNameBasicPresenterOutput {
+export class MusignyClassNameBasicPresenter implements Presenter {
+  present (input: MusignyClassNameBasicUseCaseOutput): MusignyClassNameBasicPresenterOutput {
     return {
       response: 'ok',
     }

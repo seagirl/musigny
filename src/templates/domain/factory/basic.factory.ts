@@ -1,12 +1,12 @@
-import { MusignySecondlyNameBasicEntity } from '../entity/basic.entity'
+import { MusignyEntityNameBasicEntity } from '../entity/basic.entity'
 
-interface MusignySecondlyNameBasicFactoryInput {
+interface MusignyEntityNameBasicFactoryInput {
   id: number;
 }
 
-export class MusignySecondlyNameBasicFactory {
-  static create (input: MusignySecondlyNameBasicFactoryInput): MusignySecondlyNameBasicEntity {
-    return new MusignySecondlyNameBasicEntity(
+export class MusignyEntityNameBasicFactory {
+  static create (input: MusignyEntityNameBasicFactoryInput): MusignyEntityNameBasicEntity {
+    return new MusignyEntityNameBasicEntity(
       input.id,
     )
   }

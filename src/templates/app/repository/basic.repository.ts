@@ -1,22 +1,22 @@
 import { IdentifierGenerator } from '../../core'
-import { MusignySecondlyNameBasicEntity } from '../../domain/entity/basic.entity'
+import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 
 export interface SearchInput {
   limit?: number;
   offset?: number;
 }
 
-export interface MusignySecondlyNameBasicRepository extends IdentifierGenerator {
-  search(input?: SearchInput): Promise<MusignySecondlyNameBasicEntity[]>;
-  find(id: number): Promise<MusignySecondlyNameBasicEntity | undefined>;
-  save(member: MusignySecondlyNameBasicEntity): Promise<void>;
-  delete(member: MusignySecondlyNameBasicEntity): Promise<void>;
+export interface MusignyEntityNameBasicRepository extends IdentifierGenerator {
+  search(input?: SearchInput): Promise<MusignyEntityNameBasicEntity[]>;
+  find(id: number): Promise<MusignyEntityNameBasicEntity | undefined>;
+  save(member: MusignyEntityNameBasicEntity): Promise<void>;
+  delete(member: MusignyEntityNameBasicEntity): Promise<void>;
 }
 
-export class MockMusignySecondlyNameBasicRepository implements MusignySecondlyNameBasicRepository {
+export class MockMusignyEntityNameBasicRepository implements MusignyEntityNameBasicRepository {
   nextIdentifier (): Promise<number> { return Promise.resolve(0) }
-  search (): Promise<MusignySecondlyNameBasicEntity[]> { return Promise.resolve([]) }
-  find (): Promise<MusignySecondlyNameBasicEntity | undefined> { return Promise.resolve(undefined) }
+  search (): Promise<MusignyEntityNameBasicEntity[]> { return Promise.resolve([]) }
+  find (): Promise<MusignyEntityNameBasicEntity | undefined> { return Promise.resolve(undefined) }
   save (): Promise<void> { return Promise.resolve() }
   delete (): Promise<void> { return Promise.resolve() }
 }
