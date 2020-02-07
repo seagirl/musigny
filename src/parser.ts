@@ -29,6 +29,10 @@ export class Parser {
       this.entityName = options.entityName
     }
 
+    if (this.entityName === '') {
+      this.entityName = this.className
+    }
+
     const category = this.parseCategory()
     const type = this.parseType(category)
 

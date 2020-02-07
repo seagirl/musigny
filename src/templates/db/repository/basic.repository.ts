@@ -10,9 +10,9 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
   async nextIdentifier (): Promise<number> {
     const row = await getManager().createQueryBuilder()
       .select([
-        'nextval(\'MusignyEntityNameBasicLower_id_seq\'::regclass)::int as id'
+        'nextval(\'MusignyEntityNameBasicSnake_id_seq\'::regclass)::int as id'
       ])
-      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicLower')
+      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicSnake')
       .limit(1)
       .getRawOne()
     return row.id
@@ -21,10 +21,10 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
   async search (input: SearchInput = {}): Promise<MusignyEntityNameBasicEntity[]> {
     const query = this.manager.createQueryBuilder()
       .select([
-        'MusignyEntityNameBasicLower.id as id'
+        'MusignyEntityNameBasicSnake.id as id'
       ])
-      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicLower')
-      .orderBy('MusignyEntityNameBasicLower.id')
+      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicSnake')
+      .orderBy('MusignyEntityNameBasicSnake.id')
       .limit(input.limit)
       .offset(input.offset)
 
@@ -40,11 +40,11 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
   async find (id: number): Promise<MusignyEntityNameBasicEntity | undefined> {
     const row = await this.manager.createQueryBuilder()
       .select([
-        'MusignyEntityNameBasicLower.id as id',
+        'MusignyEntityNameBasicSnake.id as id',
       ])
-      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicLower')
-      .where('MusignyEntityNameBasicLower.id = :id', { id: id })
-      .orderBy('MusignyEntityNameBasicLower.id')
+      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicSnake')
+      .where('MusignyEntityNameBasicSnake.id = :id', { id: id })
+      .orderBy('MusignyEntityNameBasicSnake.id')
       .getRawOne()
 
     if (!row) {
@@ -55,24 +55,24 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
     })
   }
 
-  async save (MusignyEntityNameBasicLower: MusignyEntityNameBasicEntity): Promise<void> {
+  async save (entity: MusignyEntityNameBasicEntity): Promise<void> {
     const repository = this.manager.getRepository(MusignyEntityNameBasic)
-    const row = await repository.findOne({ where: { id: MusignyEntityNameBasicLower.id } })
+    const row = await repository.findOne({ where: { id: entity.id } })
 
     if (!row) {
       await this.manager.createQueryBuilder()
         .insert()
         .into(MusignyEntityNameBasic, ['id'])
-        .values({ id: MusignyEntityNameBasicLower.id })
+        .values({ id: entity.id })
         .execute()
     }
   }
 
-  async delete (MusignyEntityNameBasicLower: MusignyEntityNameBasicEntity): Promise<void> {
+  async delete (entity: MusignyEntityNameBasicEntity): Promise<void> {
     await this.manager.createQueryBuilder()
       .delete()
       .from(MusignyEntityNameBasic)
-      .where({ id: MusignyEntityNameBasicLower.id })
+      .where({ id: entity.id })
       .execute()
   }
 }

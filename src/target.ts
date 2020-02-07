@@ -32,7 +32,7 @@ export class Target {
     public readonly path: string,
     public readonly category: Category,
     public readonly type: Type,
-    public readonly name: string,
+    public readonly className: string,
     public readonly entityName: string,
     public readonly config: Config = Config.basic
   ) {}
@@ -73,7 +73,7 @@ export class Target {
       path: ${this.path},
       category: ${this.category},
       type: ${this.type},
-      name: ${this.name},
+      name: ${this.className},
       entityName: ${this.entityName},
       templatePath: ${this.templatePath}
     }`

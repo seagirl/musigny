@@ -25,8 +25,11 @@ export class Template {
   }
 
   replaceVariables (content: string, target: Target): string {
-    content = content.replace(/MusignyEntityNameBasicLower/g, target.entityName)
-    content = content.replace(/MusignyClassNameBasic/g, Util.upperCamelCase(target.name))
+    content = content.replace(/MusignyClassNameBasicKebab/g, Util.kebabCase(target.className))
+    content = content.replace(/MusignyEntityNameBasicKebab/g, Util.kebabCase(target.entityName))
+    content = content.replace(/MusignyClassNameBasicSnake/g, Util.snakeCase(target.className))
+    content = content.replace(/MusignyEntityNameBasicSnake/g, Util.snakeCase(target.entityName))
+    content = content.replace(/MusignyClassNameBasic/g, Util.upperCamelCase(target.className))
     content = content.replace(/MusignyEntityNameBasic/g, Util.upperCamelCase(target.entityName))
     content = content.replace(/\/entity-name\//g, `/${target.entityName}/`)
     content = content.replace(/basic\.repository/g, `${target.entityName}.repository`)
@@ -34,8 +37,8 @@ export class Template {
     content = content.replace(/basic\.view-model/g, `${target.entityName}.view-model`)
     content = content.replace(/basic\.factory/g, `${target.entityName}.factory`)
     content = content.replace(/basic\.db/g, `${target.entityName}`)
-    content = content.replace(/basic\.usecase/g, `${target.name}.usecase`)
-    content = content.replace(/basic\.adapter/g, `${target.name}.adapter`)
+    content = content.replace(/basic\.usecase/g, `${target.className}.usecase`)
+    content = content.replace(/basic\.adapter/g, `${target.className}.adapter`)
     return content
   }
 }
