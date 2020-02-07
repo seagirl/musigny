@@ -7,12 +7,16 @@ export class Util {
   }
 
   static kebabCase (str: string): string {
-    return str.replace(/([A-Z_])/g, function (match) {
+    str = str.charAt(0).toLowerCase() + str.slice(1)
+    str = str.replace('_', '-')
+    return str.replace(/([A-Z])/g, function (match) {
       return '-' + match.toLowerCase()
     })
   }
 
   static snakeCase (str: string): string {
+    str = str.charAt(0).toLowerCase() + str.slice(1)
+    str = str.replace('-', '_')
     return str.replace(/([A-Z-])/g, function (match) {
       return '_' + match.toLowerCase()
     })
