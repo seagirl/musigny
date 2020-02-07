@@ -1,4 +1,5 @@
 import commander from 'commander'
+import emoji from 'node-emoji'
 import path from 'path'
 import { FileDownloader } from './file-downloader'
 import { Template } from './template'
@@ -12,17 +13,26 @@ async function main (): Promise<void> {
 
   commander
     .command('init')
-    .action(() => {
-      FileDownloader.donwloadAndExtract(
+    .option('-o, --output <output>')
+    .action(async (options) => {
+      const output = options.output || 'out'
+
+      await FileDownloader.donwloadAndExtract(
         'https://github.com/seagirl/typescript-template/archive/master.zip',
         'typescript-template-master',
-        'out'
+        output
       )
+
+      console.log(emoji.get('wine_glass'))
     })
 
   commander
-    .command('generate [path]')
-    .action((input) => {
+    .command('generate <path>')
+    .option('-o, --output <output>')
+    .option('-v, --verbose')
+    .action((input, options) => {
+      const output = options.output || '.'
+
       const target = Parser.parse(input)
 
       const templatePath = path.resolve(
@@ -31,10 +41,20 @@ async function main (): Promise<void> {
         target.templatePath
       )
 
-      const template = new Template(templatePath)
-      template.renderTo(`src/${target.path}.ts`, target)
+      const outputPath = path.resolve(
+        output,
+        'src',
+        target.path + '.ts'
+      )
 
-      console.log(`created: ${target}`)
+      const template = new Template(templatePath)
+      template.renderTo(outputPath, target)
+
+      if (options.verbose) {
+        console.log(target)
+      }
+
+      console.log(`created: ${outputPath}`)
     })
 
   commander.parse(process.argv)

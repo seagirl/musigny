@@ -19,10 +19,12 @@
   "dependencies": {
     "commander": "^4.1.1",
     "compressing": "^1.5.0",
+    "node-emoji": "^1.10.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/node": "^13.7.0",
+    "@types/node-emoji": "^1.8.1",
     "@types/node-fetch": "^2.5.4",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
