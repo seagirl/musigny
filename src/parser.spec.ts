@@ -2,7 +2,7 @@ import { Parser } from './parser'
 import { Target, Category, Type } from './target'
 
 describe('Parser', () => {
-  it('parse', async () => {
+  it('parse', () => {
     expect(Parser.parse('domain/entity/user.entity'))
       .toEqual(new Target('domain/entity/user.entity', Category.domain, Type.entity, 'user', 'user'))
 
@@ -25,7 +25,7 @@ describe('Parser', () => {
       .toEqual(new Target('web/builder/user/get-users.builder', Category.web, Type.builder, 'get-users', 'user'))
   })
 
-  it('parse with option', async () => {
+  it('parse with option', () => {
     expect(Parser.parse('domain/entity/user.entity', {
       className: 'HogeHOGE',
       entityName: 'fuga-fuga'

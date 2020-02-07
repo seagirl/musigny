@@ -1,8 +1,7 @@
 import { Target, Category, Type, Config } from './target'
 
 describe('Target', () => {
-  it('templatePath', async () => {
-
+  it('templatePath', () => {
     expect(new Target('domain/entity/user.entity', Category.domain, Type.entity, 'user', 'user', Config.basic).templatePath)
       .toEqual('domain/entity/basic.entity')
 
