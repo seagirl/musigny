@@ -24,13 +24,9 @@ export class Parser {
       this.className = options.className
     }
 
-    this.entityName = this.parseEntityName()
+    this.entityName = this.parseEntityName() || this.className
     if (options?.entityName != null) {
       this.entityName = options.entityName
-    }
-
-    if (this.entityName === '') {
-      this.entityName = this.className
     }
 
     const category = this.parseCategory()
@@ -75,8 +71,8 @@ export class Parser {
     return this.className
   }
 
-  parseEntityName (): string {
-    return this.entityName ?? ''
+  parseEntityName (): string | undefined {
+    return this.entityName
   }
 
   parseCategory (): Category {
