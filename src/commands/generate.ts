@@ -22,9 +22,11 @@ export const generate = (input: string, options: Options): void => {
     console.log(target)
   }
 
+  const templatesDir = '../../../src/templates'
+
   const templatePath = path.resolve(
     __dirname,
-    '../../../src/templates',
+    templatesDir,
     target.templatePath + '.ts'
   )
 
@@ -43,7 +45,7 @@ export const generate = (input: string, options: Options): void => {
 
   const testTemplatePath = path.resolve(
     __dirname,
-    '../../../src/templates',
+    templatesDir,
     target.templatePath + '.spec.ts'
   )
 
