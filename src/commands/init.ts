@@ -1,6 +1,6 @@
 import emoji from 'node-emoji'
 import path from 'path'
-import { FileDownloader } from '../file-downloader'
+import { GitHubZipFileDownloader } from '../file-downloader'
 
 interface Options {
   output: string;
@@ -16,7 +16,7 @@ export const init = async (input: string, options: Options): Promise<void> => {
   )
 
   try {
-    await FileDownloader.donwloadAndExtract(
+    await GitHubZipFileDownloader.donwloadAndExtract(
       'https://github.com/seagirl/typescript-template/archive/master.zip',
       'typescript-template-master',
       destination

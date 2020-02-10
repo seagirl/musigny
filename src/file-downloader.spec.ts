@@ -1,9 +1,9 @@
 import fs from 'fs'
 import mockFS from 'mock-fs'
 import { mock as mockConsole } from './mock/console'
-import { FileDownloader } from './file-downloader'
+import { GitHubZipFileDownloader } from './file-downloader'
 
-describe('FileDownloader', () => {
+describe('GitHubZipFileDownloader', () => {
   beforeEach(() => {
     mockConsole()
     mockFS()
@@ -12,7 +12,7 @@ describe('FileDownloader', () => {
   afterEach(mockFS.restore)
 
   it('donwloadAndExtract', async () => {
-    await FileDownloader.donwloadAndExtract(
+    await GitHubZipFileDownloader.donwloadAndExtract(
       'https://github.com/seagirl/typescript-template/archive/master.zip',
       'typescript-template-master',
       'test-out'
