@@ -10,7 +10,8 @@
     "dev": "ts-node src/index.ts",
     "lint": "eslint src/** --ext .ts,.tsx",
     "lint:fix": "eslint --fix src/** --ext .ts,.tsx",
-    "build": "rm -rf dist && tsc -p tsconfig.json"
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
