@@ -1,4 +1,7 @@
+import fs from 'fs'
+import mockFS from 'mock-fs'
 import path from 'path'
+import { mock as mockConsole } from './mock/console'
 import { Category, Target, Type } from './target'
 import { Template } from './template'
 
@@ -8,9 +11,21 @@ const templatePath = path.resolve(
 )
 
 describe('Template', () => {
+  beforeEach(() => {
+    mockConsole()
+    mockFS({
+      'src/templates/test/basic.ts': 'test',
+    })
+  })
+
+  afterEach(mockFS.restore)
+
   it('renderTo', () => {
-    // TODO
-    expect(1).toEqual(1)
+    const template = new Template(templatePath)
+    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, 'get-users', 'user')
+    const outputPath = 'test-out/template.ts'
+    template.renderTo(outputPath, target)
+    expect(fs.existsSync(outputPath)).toEqual(true)
   })
 
   it('replaceVariables', () => {
