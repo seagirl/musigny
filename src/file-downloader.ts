@@ -11,7 +11,7 @@ export class FileDownloader {
     await this.extract(filename, rootDir, destination)
   }
 
-  static async donwloadAndSave (url: string, rootDir: string, destination: string): Promise<string> {
+  private static async donwloadAndSave (url: string, rootDir: string, destination: string): Promise<string> {
     if (fs.existsSync(destination)) {
       throw new Error(`destination "${destination}" is already exists`)
     }
@@ -32,7 +32,7 @@ export class FileDownloader {
     })
   }
 
-  static async extract (filename: string, rootDir: string, destination: string): Promise<void> {
+  private static async extract (filename: string, rootDir: string, destination: string): Promise<void> {
     try {
       await compressing.zip.uncompress(filename, FileDownloader.TMP_NAME)
       fs.renameSync(FileDownloader.TMP_NAME + '/' + rootDir, destination)

@@ -22,7 +22,6 @@ export const init = async (input: string, options: Options): Promise<void> => {
       destination
     )
 
-
     console.log(emoji.get('wine_glass') + ' created.')
   } catch (error) {
     console.error(error)
