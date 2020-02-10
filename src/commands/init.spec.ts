@@ -1,7 +1,7 @@
 import fs from 'fs'
 import mockFS from 'mock-fs'
-import { init } from './init'
 import { mock as mockConsole } from '../mock/console'
+import { init } from './init'
 
 describe('init command', () => {
   beforeEach(() => {

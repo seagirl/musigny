@@ -8,6 +8,7 @@ interface Options {
   verbose: boolean;
   className?: string;
   entityName?: string;
+  templatesDir?: string;
 }
 
 export const generate = (input: string, options: Options): void => {
@@ -22,7 +23,7 @@ export const generate = (input: string, options: Options): void => {
     console.log(target)
   }
 
-  const templatesDir = '../../../src/templates'
+  const templatesDir = options.templatesDir ?? '../../../src/templates'
 
   const templatePath = path.resolve(
     __dirname,
