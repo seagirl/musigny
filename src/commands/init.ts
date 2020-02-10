@@ -1,6 +1,6 @@
 import emoji from 'node-emoji'
 import path from 'path'
-import { GitHubZipFileDownloader } from '../git-hub-zip-file-downloader'
+import { GitHubZipFileDownloader } from '../github-zip-file-downloader'
 
 interface Options {
   output: string;
