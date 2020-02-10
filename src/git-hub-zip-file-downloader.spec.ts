@@ -1,7 +1,7 @@
 import fs from 'fs'
 import mockFS from 'mock-fs'
 import { mock as mockConsole } from './mock/console'
-import { GitHubZipFileDownloader } from './file-downloader'
+import { GitHubZipFileDownloader } from './git-hub-zip-file-downloader'
 
 describe('GitHubZipFileDownloader', () => {
   beforeEach(() => {
