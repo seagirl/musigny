@@ -1,21 +1,21 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  moduleFileExtensions: ["ts", "tsx", "js", "json"],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
+    '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   globals: {
-    "ts-jest": {
-      tsConfig: "tsconfig.json"
+    'ts-jest': {
+      tsConfig: 'tsconfig.json'
     }
   },
-  testMatch: ["**/*.spec.+(ts|tsx)"],
+  testMatch: ['**/*.spec.+(ts|tsx)'],
+  testPathIgnorePatterns: ['node_modules', 'src/templates'],
   moduleNameMapper: {
-    "~/(.*)": "<rootDir>/$1"
+    '~/(.*)': '<rootDir>/$1'
   },
   coveragePathIgnorePatterns: [
-    "<rootDir>/node_modules/",
-    "<rootDir>/src/db/migration/"
+    '<rootDir>/node_modules/',
   ]
 }
