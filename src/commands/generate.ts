@@ -6,6 +6,7 @@ import fs from 'fs'
 interface Options {
   output: string;
   verbose: boolean;
+  test: boolean;
   className?: string;
   entityName?: string;
   templatesDir?: string;
@@ -42,6 +43,10 @@ export const generate = (input: string, options: Options): void => {
     template.renderTo(outputPath, target)
 
     console.log(`created: ${outputPath}`)
+  }
+
+  if (options.test === false) {
+    return
   }
 
   const testTemplatePath = path.resolve(

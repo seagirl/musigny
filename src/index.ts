@@ -17,6 +17,7 @@ async function main (): Promise<void> {
     .command('generate <path>')
     .option('-o, --output <output>')
     .option('-v, --verbose')
+    .option('--no-test')
     .option('--class-name <className>')
     .option('--entity-name <entityName>')
     .action(generate)
