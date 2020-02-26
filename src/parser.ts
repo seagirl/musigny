@@ -5,12 +5,8 @@ interface Options {
   entityName?: string;
 }
 
-export function toEnum<T, E extends keyof T> (enumType: T, value: E | string): T[E] | null {
-  if (Object.values(enumType).includes(value)) {
-    return enumType[value as E]
-  }
-
-  return null
+export function toEnum<T, E extends keyof T> (enumType: T, value: E | string): T[E] | undefined {
+  return enumType[value as E]
 }
 
 export class Parser {
