@@ -5,12 +5,12 @@ interface Options {
   entityName?: string;
 }
 
-export function toEnum<T> (enumType: T, value: string | undefined): string | undefined {
+export function toEnum<T, E extends keyof T> (enumType: T, value: E | string): T[E] | null {
   if (Object.values(enumType).includes(value)) {
-    return value as string
+    return enumType[value as E]
   }
 
-  return undefined
+  return null
 }
 
 export class Parser {
@@ -89,15 +89,23 @@ export class Parser {
   }
 
   parseCategory (): Category {
+    if (this.categoryName == null) {
+      return Category.unknown
+    }
+
     const category = toEnum(Category, this.categoryName)
     if (category == null) {
       return Category.unknown
     }
 
-    return category as Category
+    return category
   }
 
   parseType (category: Category): Type {
+    if (this.typeName == null) {
+      return Type.unknown
+    }
+
     const type = toEnum(Type, this.typeName)
     if (type == null) {
       return Type.unknown
@@ -109,6 +117,6 @@ export class Parser {
       }
     }
 
-    return type as Type
+    return type
   }
 }

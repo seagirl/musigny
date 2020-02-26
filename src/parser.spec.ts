@@ -4,7 +4,7 @@ import { Target, Category, Type } from './target'
 describe('Parser', () => {
   it('toEnum', () => {
     expect(toEnum(Category, 'domain')).toBe(Category.domain)
-    expect(toEnum(Category, 'aa')).toBe(undefined)
+    expect(toEnum(Category, 'aa')).toBe(null)
   })
 
   it('parse', () => {
