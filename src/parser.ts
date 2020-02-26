@@ -107,8 +107,8 @@ export class Parser {
       return Type.unknown
     }
 
-    if (type == Type.repository) {
-      if (category == Category.app) {
+    if (type === Type.repository) {
+      if (category === Category.app) {
         return Type.repositoryInterface
       }
     }
