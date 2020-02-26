@@ -5,11 +5,11 @@ interface Options {
   entityName?: string;
 }
 
-function toEnum<T, E extends keyof T>(enumType: T, value: E): T[E]
-function toEnum<T, E extends string>(enumType: T, value: E): E | null
+export function toEnum<T, E extends keyof T>(enumType: T, value: E): T[E]
+export function toEnum<T, E extends string>(enumType: T, value: E): null
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function toEnum (enumType: any, value: any): any {
+export function toEnum (enumType: any, value: any): any {
   if (Object.values(enumType).includes(value)) {
     return value
   }
