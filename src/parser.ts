@@ -7,7 +7,9 @@ interface Options {
 
 function toEnum<T, E extends keyof T>(enumType: T, value: E): T[E]
 function toEnum<T, E extends string>(enumType: T, value: E): E | null
-function toEnum<T, E extends string> (enumType: T, value: E): E | null {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function toEnum (enumType: any, value: any): any {
   if (Object.values(enumType).includes(value)) {
     return value
   }

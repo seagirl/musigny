@@ -18,7 +18,7 @@ describe('generate command', () => {
     generate('app/usecase/user/get-users.usecase', {
       output: 'test-out',
       verbose: false,
-      test: false,
+      test: true,
       templatesDir: '../templates'
     })
     expect(fs.existsSync('test-out/src/app/usecase/user/get-users.usecase.ts')).toBe(true)
@@ -29,7 +29,7 @@ describe('generate command', () => {
     generate('app/usecase/user/post-users.usecase', {
       output: 'test-out',
       verbose: false,
-      test: true,
+      test: false,
       templatesDir: '../templates'
     })
     expect(fs.existsSync('test-out/src/app/usecase/user/post-users.usecase.ts')).toBe(true)
