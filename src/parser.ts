@@ -5,16 +5,12 @@ interface Options {
   entityName?: string;
 }
 
-export function toEnum<T, E extends keyof T>(enumType: T, value: E): T[E]
-export function toEnum<T, E extends string>(enumType: T, value: E): null
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function toEnum (enumType: any, value: any): any {
+export function toEnum<T> (enumType: T, value: string | undefined): string | undefined {
   if (Object.values(enumType).includes(value)) {
-    return value
+    return value as string
   }
 
-  return null
+  return undefined
 }
 
 export class Parser {
@@ -93,23 +89,15 @@ export class Parser {
   }
 
   parseCategory (): Category {
-    if (this.categoryName == null) {
-      return Category.unknown
-    }
-
     const category = toEnum(Category, this.categoryName)
     if (category == null) {
       return Category.unknown
     }
 
-    return category
+    return category as Category
   }
 
   parseType (category: Category): Type {
-    if (this.typeName == null) {
-      return Type.unknown
-    }
-
     const type = toEnum(Type, this.typeName)
     if (type == null) {
       return Type.unknown
@@ -121,6 +109,6 @@ export class Parser {
       }
     }
 
-    return type
+    return type as Type
   }
 }

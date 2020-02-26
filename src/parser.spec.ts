@@ -4,10 +4,13 @@ import { Target, Category, Type } from './target'
 describe('Parser', () => {
   it('toEnum', () => {
     expect(toEnum(Category, 'domain')).toBe(Category.domain)
-    expect(toEnum(Category, 'aa')).toBe(null)
+    expect(toEnum(Category, 'aa')).toBe(undefined)
   })
 
   it('parse', () => {
+    expect(Parser.parse('hoge/entity/user.entity'))
+      .toEqual(new Target('hoge/entity/user.entity', Category.unknown, Type.entity, 'user', 'user'))
+
     expect(Parser.parse('domain/entity/user.entity'))
       .toEqual(new Target('domain/entity/user.entity', Category.domain, Type.entity, 'user', 'user'))
 
