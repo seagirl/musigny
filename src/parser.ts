@@ -102,7 +102,7 @@ export class Parser {
       return Category.unknown
     }
 
-    return category as Category
+    return category
   }
 
   parseType (category: Category): Type {
@@ -121,6 +121,6 @@ export class Parser {
       }
     }
 
-    return type as Type
+    return type
   }
 }
