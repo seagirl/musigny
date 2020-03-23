@@ -25,7 +25,7 @@ async function main (): Promise<void> {
     .action(generate)
 
   commander
-    .command('generate-api <api_name> <entity_name>')
+    .command('generate-api <apiName> <entityName>')
     .option('-o, --output <output>')
     .option('-v, --verbose', 'verbosity', false)
     .option('-f, --force', 'override file if exists', false)
