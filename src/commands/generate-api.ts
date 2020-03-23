@@ -14,10 +14,13 @@ export const generateAPI = (apiName: string, entityName: string, options: Option
   console.log(`generateAPI ${apiName} ${entityName}`)
 
   generate(`domain/entity/${entityName}.entity`, options)
+  generate(`domain/factory/${entityName}.factory`, options)
   generate(`app/repository/${entityName}.repository`, options)
   generate(`app/usecase/${entityName}/${apiName}.usecase`, options)
   generate(`db/repository/${entityName}.repository`, options)
   generate(`web/adapter/${entityName}.translator`, options)
   generate(`web/adapter/${entityName}/${apiName}.adapter`, options)
   generate(`web/builder/${entityName}/${apiName}.builder`, options)
+  generate(`web/api/${entityName}.api`, options)
+  generate(`web/view-model/${entityName}.view-model`, options)
 }

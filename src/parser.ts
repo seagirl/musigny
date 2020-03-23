@@ -1,4 +1,5 @@
 import { Category, Type, Target } from './target'
+import { Util } from './util'
 
 interface Options {
   className?: string;
@@ -89,7 +90,7 @@ export class Parser {
       return Category.unknown
     }
 
-    const category = toEnum(Category, this.categoryName)
+    const category = toEnum(Category, Util.lowerCamelCase(this.categoryName))
     if (category == null) {
       return Category.unknown
     }
@@ -102,7 +103,9 @@ export class Parser {
       return Type.unknown
     }
 
-    const type = toEnum(Type, this.typeName)
+    console.log(`this.typeName: ${this.typeName}`)
+
+    const type = toEnum(Type, Util.lowerCamelCase(this.typeName))
     if (type == null) {
       return Type.unknown
     }
