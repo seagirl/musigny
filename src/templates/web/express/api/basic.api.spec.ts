@@ -13,9 +13,9 @@ describe('MusignyEntityNameBasic API', () => {
     await app.finish()
   })
 
-  // it('POST /api/MusignyEntityNameSnakes', async () => {
+  // it('POST /api/MusignyEntityNameBasicSnakes', async () => {
   //   const request = supertest(app.express)
-  //   const response = await request.post('/api/MusignyEntityNameSnakes').query({ id: testId })
+  //   const response = await request.post('/api/MusignyEntityNameBasicSnakes').query({ id: testId })
   //   const body = response.body
 
   //   if (response.status != 200)
@@ -25,9 +25,9 @@ describe('MusignyEntityNameBasic API', () => {
   //   expect(body.response).toBe('ok')
   // })
 
-  // it('GET /api/MusignyEntityNameSnakes', async () => {
+  // it('GET /api/MusignyEntityNameBasicSnakes', async () => {
   //   const request = supertest(app.express)
-  //   const response = await request.get('/api/MusignyEntityNameSnakes')
+  //   const response = await request.get('/api/MusignyEntityNameBasicSnakes')
   //   const body = response.body
 
   //   if (response.status != 200)
@@ -45,9 +45,9 @@ describe('MusignyEntityNameBasic API', () => {
   //   )
   // })
 
-  // it('GET /api/MusignyEntityNameSnakes/:id', async () => {
+  // it('GET /api/MusignyEntityNameBasicSnakes/:id', async () => {
   //   const request = supertest(app.express)
-  //   const response = await request.get('/api/MusignyEntityNameSnakes/' + testId)
+  //   const response = await request.get('/api/MusignyEntityNameBasicSnakes/' + testId)
   //   const body = response.body
 
   //   if (response.status != 200)
@@ -63,9 +63,9 @@ describe('MusignyEntityNameBasic API', () => {
   //   )
   // })
 
-  // it('PUT /api/MusignyEntityNameSnakes/:id', async () => {
+  // it('PUT /api/MusignyEntityNameBasicSnakes/:id', async () => {
   //   const request = supertest(app.express)
-  //   let response = await request.put('/api/MusignyEntityNameSnakes/' + testId)
+  //   let response = await request.put('/api/MusignyEntityNameBasicSnakes/' + testId)
   //   let body = response.body
 
   //   if (response.status != 200)
@@ -75,9 +75,9 @@ describe('MusignyEntityNameBasic API', () => {
   //   expect(body.response).toBe('ok')
   // })
 
-  // it('DELETE /api/MusignyEntityNameSnakes/:id', async () => {
+  // it('DELETE /api/MusignyEntityNameBasicSnakes/:id', async () => {
   //   const request = supertest(app.express)
-  //   const response = await request.delete('/api/MusignyEntityNameSnakes/' + testId)
+  //   const response = await request.delete('/api/MusignyEntityNameBasicSnakes/' + testId)
   //   const body = response.body
 
   //   if (response.status != 200)
