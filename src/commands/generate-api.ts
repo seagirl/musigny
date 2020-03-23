@@ -21,6 +21,6 @@ export const generateAPI = (apiName: string, entityName: string, options: Option
   generate(`web/adapter/${entityName}.translator`, options)
   generate(`web/adapter/${entityName}/${apiName}.adapter`, options)
   generate(`web/builder/${entityName}/${apiName}.builder`, options)
-  generate(`web/api/${entityName}.api`, options)
+  generate(`web/express/api/${entityName}.api`, options)
   generate(`web/view-model/${entityName}.view-model`, options)
 }

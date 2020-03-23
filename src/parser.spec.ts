@@ -31,6 +31,9 @@ describe('Parser', () => {
 
     expect(Parser.parse('web/builder/user/get-users.builder'))
       .toEqual(new Target('web/builder/user/get-users.builder', Category.web, Type.builder, 'get-users', 'user'))
+
+    expect(Parser.parse('web/express/api/user.api'))
+      .toEqual(new Target('web/express/api/user.api', Category.web, Type.api, 'user', 'user'))
   })
 
   it('parse with option', () => {
