@@ -47,7 +47,7 @@ export class Template {
     content = content.replace(/basic\.value-object/g, `${Util.kebabCase(target.entityName)}.value-object`)
     content = content.replace(/basic\.view-model/g, `${Util.kebabCase(target.entityName)}.view-model`)
     content = content.replace(/basic\.factory/g, `${Util.kebabCase(target.entityName)}.factory`)
-    content = content.replace(/basic\.row/g, `${Util.kebabCase(target.entityName)}.row`)
+    content = content.replace(/basic\.row/g, `${Util.kebabCase(target.entityName)}`)
 
     content = content.replace(/basic\.usecase/g, `${Util.kebabCase(target.className)}.usecase`)
     content = content.replace(/basic\.adapter/g, `${Util.kebabCase(target.className)}.adapter`)

@@ -63,7 +63,7 @@ describe('Template', () => {
       user.value-object
       user.view-model
       user.factory
-      user.row
+      user
       get-users.usecase
       get-users.adapter
     `)
