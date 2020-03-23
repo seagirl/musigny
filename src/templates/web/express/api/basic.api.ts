@@ -1,5 +1,9 @@
 import { NextFunction, Request, Response, Router } from 'express'
-// import { MusignyClassNameBasicBuilder } from '../../builder/entity-name/basic.builder'
+// import { GetMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicSnakes.builder'
+// import { GetMusignyEntityNameBasicBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicSnake.builder'
+// import { PostMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/post-MusignyEntityNameBasicSnakes.builder'
+// import { PutMusignyEntityNameBasicBuilder } from '../../builder/entity-name/put-MusignyEntityNameBasicSnake.builder'
+// import { DeleteMusignyEntityNameBasicBuilder } from '../../builder/entity-name/delete-MusignyEntityNameBasicSnake.builder'
 import { handle } from '../util'
 
 const router = Router()
