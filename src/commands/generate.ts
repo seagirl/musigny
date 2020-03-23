@@ -6,6 +6,7 @@ import fs from 'fs'
 interface Options {
   output: string;
   verbose: boolean;
+  force: boolean;
   test: boolean;
   className?: string;
   entityName?: string;
@@ -40,9 +41,7 @@ export const generate = (input: string, options: Options): void => {
     )
 
     const template = new Template(templatePath)
-    template.renderTo(outputPath, target)
-
-    console.log(`created: ${outputPath}`)
+    template.renderTo(outputPath, target, options.force)
   }
 
   if (options.test === false) {
@@ -63,8 +62,6 @@ export const generate = (input: string, options: Options): void => {
     )
 
     const testTemplate = new Template(testTemplatePath)
-    testTemplate.renderTo(testOutputPath, target)
-
-    console.log(`created: ${testOutputPath}`)
+    testTemplate.renderTo(testOutputPath, target, options.force)
   }
 }

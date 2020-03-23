@@ -18,6 +18,7 @@ describe('generate command', () => {
     generate('app/usecase/user/get-users.usecase', {
       output: 'test-out',
       verbose: false,
+      force: false,
       test: true,
       templatesDir: '../templates'
     })
@@ -29,6 +30,7 @@ describe('generate command', () => {
     generate('app/usecase/user/post-users.usecase', {
       output: 'test-out',
       verbose: false,
+      force: false,
       test: false,
       templatesDir: '../templates'
     })

@@ -7,6 +7,12 @@ describe('Util', () => {
     expect(Util.upperCamelCase('GetUsers.usecase')).toEqual('GetUsers.usecase')
   })
 
+  it('lowerCamelCase', () => {
+    expect(Util.lowerCamelCase('get-users.usecase')).toEqual('getUsers.usecase')
+    expect(Util.lowerCamelCase('get_users.usecase')).toEqual('getUsers.usecase')
+    expect(Util.lowerCamelCase('GetUsers.usecase')).toEqual('getUsers.usecase')
+  })
+
   it('kebabCase', () => {
     expect(Util.kebabCase('get-users.usecase')).toEqual('get-users.usecase')
     expect(Util.kebabCase('get_users.usecase')).toEqual('get-users.usecase')

@@ -8,9 +8,16 @@ export class Template {
     public templatePath: string
   ) {}
 
-  renderTo (outputPath: string, target: Target): void {
+  renderTo (outputPath: string, target: Target, force: boolean): void {
     if (fs.existsSync(outputPath)) {
-      throw new Error(`outputPath "${outputPath}" is exists`)
+      console.warn(`[WARN] outputPath "${outputPath}" is exists`)
+
+      if (force == false) {
+        console.log(`skipped: ${outputPath}`)
+        return
+      }
+
+      fs.unlinkSync(outputPath)
     }
 
     const buf = fs.readFileSync(this.templatePath)
@@ -22,6 +29,7 @@ export class Template {
     }
 
     fs.writeFileSync(outputPath, content)
+    console.log(`created: ${outputPath}`)
   }
 
   replaceVariables (content: string, target: Target): string {
