@@ -103,8 +103,6 @@ export class Parser {
       return Type.unknown
     }
 
-    console.log(`this.typeName: ${this.typeName}`)
-
     const type = toEnum(Type, Util.lowerCamelCase(this.typeName))
     if (type == null) {
       return Type.unknown
