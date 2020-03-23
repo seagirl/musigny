@@ -1,5 +1,6 @@
 import commander from 'commander'
 import { generate } from './commands/generate'
+import { generateAPI } from './commands/generate-api'
 import { init } from './commands/init'
 
 async function main (): Promise<void> {
@@ -16,11 +17,22 @@ async function main (): Promise<void> {
   commander
     .command('generate <path>')
     .option('-o, --output <output>')
-    .option('-v, --verbose')
+    .option('-v, --verbose', 'verbosity', false)
+    .option('-f, --force', 'override file if exists', false)
     .option('--no-test')
     .option('--class-name <className>')
     .option('--entity-name <entityName>')
     .action(generate)
+
+  commander
+    .command('generate-api <api_name> <entity_name>')
+    .option('-o, --output <output>')
+    .option('-v, --verbose', 'verbosity', false)
+    .option('-f, --force', 'override file if exists', false)
+    .option('--no-test')
+    .option('--class-name <className>')
+    .option('--entity-name <entityName>')
+    .action(generateAPI)
 
   commander.parse(process.argv)
 

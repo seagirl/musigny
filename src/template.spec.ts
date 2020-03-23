@@ -24,7 +24,7 @@ describe('Template', () => {
     const template = new Template(templatePath)
     const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, 'get-users', 'user')
     const outputPath = 'test-out/template.ts'
-    template.renderTo(outputPath, target)
+    template.renderTo(outputPath, target, false)
     expect(fs.existsSync(outputPath)).toEqual(true)
   })
 
