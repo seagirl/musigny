@@ -25,6 +25,7 @@ export enum Type {
   builder             = 'builder',
   api                 = 'api',
   repository          = 'repository',
+  row                 = 'row',
   unknown             = 'unknown',
 }
 
@@ -66,6 +67,8 @@ export class Target {
         return `web/express/api/${this.config}.api`
       case Type.repository:
         return `db/repository/${this.config}.repository`
+      case Type.row:
+        return `db/row/${this.config}.row`
     }
 
     throw new Error(`Unsupported type: ${this.type}`)

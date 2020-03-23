@@ -45,7 +45,7 @@ describe('Template', () => {
       basic.value-object
       basic.view-model
       basic.factory
-      basic.db
+      basic.row
       basic.usecase
       basic.adapter
     `
@@ -63,7 +63,7 @@ describe('Template', () => {
       user.value-object
       user.view-model
       user.factory
-      user
+      user.row
       get-users.usecase
       get-users.adapter
     `)

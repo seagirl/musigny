@@ -18,6 +18,7 @@ export const generateAPI = (apiName: string, entityName: string, options: Option
   generate(`app/repository/${entityName}.repository`, options)
   generate(`app/usecase/${entityName}/${apiName}.usecase`, options)
   generate(`db/repository/${entityName}.repository`, options)
+  generate(`db/entity/${entityName}.db`, options)
   generate(`web/adapter/${entityName}.translator`, options)
   generate(`web/adapter/${entityName}/${apiName}.adapter`, options)
   generate(`web/builder/${entityName}/${apiName}.builder`, options)

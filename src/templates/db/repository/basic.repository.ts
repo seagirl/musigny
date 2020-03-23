@@ -2,7 +2,7 @@ import { EntityManager, getManager } from 'typeorm'
 import { MusignyEntityNameBasicRepository as MusignyEntityNameBasicRepositoryInterfaceInterface, SearchInput } from '../../app/repository/basic.repository'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
-import { MusignyEntityNameBasic } from '../entity/basic.db'
+import { MusignyEntityNameBasic } from '../row/basic.row'
 
 export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicRepositoryInterfaceInterface {
   private manager: EntityManager = getManager()

@@ -22,7 +22,7 @@ describe('MusignyClassNameBasicInteractor', () => {
     //repositorySearchSpy.mockReturnValue(Promise.resolve([]))
 
     const result = await interactor.execute({})
-    expect(result).toEqual({ data: [] })
+    expect(result).toEqual({})
 
     //expect(repositorySearchSpy).toHaveBeenCalledTimes(1)
   })

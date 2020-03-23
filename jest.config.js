@@ -11,7 +11,7 @@ module.exports = {
     }
   },
   testMatch: ['**/*.spec.+(ts|tsx)'],
-  testPathIgnorePatterns: ['node_modules', 'src/templates'],
+  testPathIgnorePatterns: ['node_modules', 'src/templates', 'out'],
   moduleNameMapper: {
     '~/(.*)': '<rootDir>/$1'
   },
