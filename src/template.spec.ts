@@ -26,6 +26,9 @@ describe('Template', () => {
     const outputPath = 'test-out/template.ts'
     template.renderTo(outputPath, target, false)
     expect(fs.existsSync(outputPath)).toEqual(true)
+
+    template.renderTo(outputPath, target, false)
+    template.renderTo(outputPath, target, true)
   })
 
   it('replaceVariables', () => {
@@ -66,6 +69,31 @@ describe('Template', () => {
       user
       get-users.usecase
       get-users.adapter
+    `)
+  })
+
+  it('replaceComments', () => {
+    const template = new Template(templatePath)
+    const target = new Target('web/express/api/user.api', Category.web, Type.api, APIType.index, 'get-users', 'user')
+
+    const contet = `
+      // musigny-index hogehoge
+      // musigny-index hogehoge
+      // musigny-index hogehoge
+
+      // musigny-show hogehoge
+      // musigny-show hogehoge
+      // musigny-show hogehoge
+    `
+
+    expect(template.replaceComments(contet, target)).toBe(`
+      hogehoge
+      hogehoge
+      hogehoge
+
+      // musigny-show hogehoge
+      // musigny-show hogehoge
+      // musigny-show hogehoge
     `)
   })
 })

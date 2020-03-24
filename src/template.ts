@@ -9,19 +9,21 @@ export class Template {
   ) {}
 
   renderTo (outputPath: string, target: Target, force: boolean): void {
+    let logMessage = 'created'
+    let aPath = this.templatePath
+
     if (fs.existsSync(outputPath)) {
       console.warn(`[WARN] outputPath "${outputPath}" is exists`)
 
-      if (force == false) {
-        console.log(`skipped: ${outputPath}`)
-        return
+      if (force === false) {
+        logMessage = 'updated'
+        aPath = outputPath
       }
-
-      fs.unlinkSync(outputPath)
     }
 
-    const buf = fs.readFileSync(this.templatePath)
-    const content = this.replaceVariables(buf.toString(), target)
+    const buf = fs.readFileSync(aPath)
+    let content = this.replaceVariables(buf.toString(), target)
+    content = this.replaceComments(buf.toString(), target)
 
     const dir = path.dirname(outputPath)
     if (!fs.existsSync(dir)) {
@@ -29,7 +31,7 @@ export class Template {
     }
 
     fs.writeFileSync(outputPath, content)
-    console.log(`created: ${outputPath}`)
+    console.log(`${logMessage}: ${outputPath}`)
   }
 
   replaceVariables (content: string, target: Target): string {
@@ -52,6 +54,10 @@ export class Template {
     content = content.replace(/basic\.usecase/g, `${Util.kebabCase(target.className)}.usecase`)
     content = content.replace(/basic\.adapter/g, `${Util.kebabCase(target.className)}.adapter`)
 
+    return content
+  }
+
+  replaceComments (content: string, target: Target): string {
     switch (target.apiType) {
       case APIType.index:
         content = content.replace(/\/\/ musigny-index /g, '')
