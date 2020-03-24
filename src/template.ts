@@ -23,7 +23,7 @@ export class Template {
 
     const buf = fs.readFileSync(aPath)
     let content = this.replaceVariables(buf.toString(), target)
-    content = this.replaceComments(buf.toString(), target)
+    content = this.replaceComments(content, target)
 
     const dir = path.dirname(outputPath)
     if (!fs.existsSync(dir)) {
