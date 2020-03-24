@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { Target } from './target'
+import { Target, APIType } from './target'
 import { Util } from './util'
 
 export class Template {
@@ -51,6 +51,27 @@ export class Template {
 
     content = content.replace(/basic\.usecase/g, `${Util.kebabCase(target.className)}.usecase`)
     content = content.replace(/basic\.adapter/g, `${Util.kebabCase(target.className)}.adapter`)
+
+    console.log(target.apiType)
+
+    switch (target.apiType) {
+      case APIType.index:
+        content = content.replace(/\/\/ musigny-index /g, '')
+        break
+      case APIType.show:
+        content = content.replace(/\/\/ musigny-show /g, '')
+        break
+      case APIType.new:
+        content = content.replace(/\/\/ musigny-new /g, '')
+        break
+      case APIType.edit:
+        content = content.replace(/\/\/ musigny-edit /g, '')
+        break
+      case APIType.destroy:
+        content = content.replace(/\/\/ musigny-destroy /g, '')
+        break
+    }
+
     return content
   }
 }

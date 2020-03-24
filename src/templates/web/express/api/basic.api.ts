@@ -1,31 +1,31 @@
 import { NextFunction, Request, Response, Router } from 'express'
-// import { GetMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicSnakes.builder'
-// import { GetMusignyEntityNameBasicBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicSnake.builder'
-// import { PostMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/post-MusignyEntityNameBasicSnakes.builder'
-// import { PutMusignyEntityNameBasicBuilder } from '../../builder/entity-name/put-MusignyEntityNameBasicSnake.builder'
-// import { DeleteMusignyEntityNameBasicBuilder } from '../../builder/entity-name/delete-MusignyEntityNameBasicSnake.builder'
+// musigny-index import { GetMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicSnakes.builder'
+// musigny-show import { GetMusignyEntityNameBasicBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicSnake.builder'
+// musigny-new import { PostMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/post-MusignyEntityNameBasicSnakes.builder'
+// musigny-edit import { PutMusignyEntityNameBasicBuilder } from '../../builder/entity-name/put-MusignyEntityNameBasicSnake.builder'
+// musigny-destroy import { DeleteMusignyEntityNameBasicBuilder } from '../../builder/entity-name/delete-MusignyEntityNameBasicSnake.builder'
 import { handle } from '../util'
 
 const router = Router()
 
-// router.get('/MusignyEntityNameBasicSnakes', async (req: Request, res: Response, next: NextFunction) => {
-//   await handle(new GetMusignyEntityNameBasicsBuilder(), req, res, next)
-// })
+// musigny-index router.get('/MusignyEntityNameBasicSnakes', async (req: Request, res: Response, next: NextFunction) => {
+// musigny-index   await handle(new GetMusignyEntityNameBasicsBuilder(), req, res, next)
+// musigny-index })
 
-// router.get('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
-//   await handle(new GetMusignyEntityNameBasicBuilder(), req, res, next)
-// })
+// musigny-show router.get('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
+// musigny-show   await handle(new GetMusignyEntityNameBasicBuilder(), req, res, next)
+// musigny-show })
 
-// router.post('/MusignyEntityNameBasicSnakes', async (req: Request, res: Response, next: NextFunction) => {
-//   await handle(new PostMusignyEntityNameBasicsBuilder(), req, res, next)
-// })
+// musigny-new router.post('/MusignyEntityNameBasicSnakes', async (req: Request, res: Response, next: NextFunction) => {
+// musigny-new   await handle(new PostMusignyEntityNameBasicsBuilder(), req, res, next)
+// musigny-new })
 
-// router.put('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
-//   await handle(new PutMusignyEntityNameBasicBuilder(), req, res, next)
-// })
+// musigny-edit router.put('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
+// musigny-edit   await handle(new PutMusignyEntityNameBasicBuilder(), req, res, next)
+// musigny-edit })
 
-// router.delete('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
-//   await handle(new DeleteMusignyEntityNameBasicBuilder(), req, res, next)
-// })
+// musigny-destroy router.delete('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
+// musigny-destroy   await handle(new DeleteMusignyEntityNameBasicBuilder(), req, res, next)
+// musigny-destroy })
 
 export default router

@@ -29,11 +29,21 @@ export enum Type {
   unknown             = 'unknown',
 }
 
+export enum APIType {
+  index   = 'index',
+  show    = 'show',
+  new     = 'new',
+  edit    = 'edit',
+  destroy = 'destroy',
+  unknown = 'unknown',
+}
+
 export class Target {
   constructor (
     public readonly path: string,
     public readonly category: Category,
     public readonly type: Type,
+    public readonly apiType: APIType,
     public readonly className: string,
     public readonly entityName: string,
     public readonly config: Config = Config.basic

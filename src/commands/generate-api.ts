@@ -5,6 +5,7 @@ interface Options {
   verbose: boolean;
   force: boolean;
   test: boolean;
+  apiName?: string;
   className?: string;
   entityName?: string;
   templatesDir?: string;
@@ -12,6 +13,8 @@ interface Options {
 
 export const generateAPI = (apiName: string, entityName: string, options: Options): void => {
   console.log(`generateAPI ${apiName} ${entityName}`)
+  options.apiName = apiName
+  options.entityName = entityName
 
   generate(`domain/entity/${entityName}.entity`, options)
   generate(`domain/factory/${entityName}.factory`, options)

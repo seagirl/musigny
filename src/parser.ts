@@ -1,7 +1,8 @@
-import { Category, Type, Target } from './target'
+import { Category, Type, Target, APIType } from './target'
 import { Util } from './util'
 
 interface Options {
+  apiName?: string;
   className?: string;
   entityName?: string;
 }
@@ -36,8 +37,9 @@ export class Parser {
 
     const category = this.parseCategory()
     const type = this.parseType(category)
+    const apiType = this.parseAPIType(options)
 
-    return new Target(path, category, type, this.className, this.entityName)
+    return new Target(path, category, type, apiType, this.className, this.entityName)
   }
 
   parseFlagments (path: string): void {
@@ -115,5 +117,34 @@ export class Parser {
     }
 
     return type
+  }
+
+  parseAPIType (options?: Options): APIType {
+    const apiName = options?.apiName ?? this.className
+    if (apiName == null) {
+      return APIType.unknown
+    }
+
+    if (/^get.+s$/.exec(Util.lowerCamelCase(apiName))) {
+      return APIType.index
+    }
+
+    if (/^get.+/.exec(Util.lowerCamelCase(apiName))) {
+      return APIType.show
+    }
+
+    if (/^post.+/.exec(Util.lowerCamelCase(apiName))) {
+      return APIType.new
+    }
+
+    if (/^put.+/.exec(Util.lowerCamelCase(apiName))) {
+      return APIType.edit
+    }
+
+    if (/^delete.+/.exec(Util.lowerCamelCase(apiName))) {
+      return APIType.destroy
+    }
+
+    return APIType.unknown
   }
 }

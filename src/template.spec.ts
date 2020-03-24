@@ -2,7 +2,7 @@ import fs from 'fs'
 import mockFS from 'mock-fs'
 import path from 'path'
 import { mock as mockConsole } from './mock/console'
-import { Category, Target, Type } from './target'
+import { Category, Target, Type, APIType } from './target'
 import { Template } from './template'
 
 const templatePath = path.resolve(
@@ -22,7 +22,7 @@ describe('Template', () => {
 
   it('renderTo', () => {
     const template = new Template(templatePath)
-    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, 'get-users', 'user')
+    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user')
     const outputPath = 'test-out/template.ts'
     template.renderTo(outputPath, target, false)
     expect(fs.existsSync(outputPath)).toEqual(true)
@@ -30,7 +30,7 @@ describe('Template', () => {
 
   it('replaceVariables', () => {
     const template = new Template(templatePath)
-    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, 'get-users', 'user')
+    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user')
 
     const contet = `
       MusignyClassNameBasicKebab

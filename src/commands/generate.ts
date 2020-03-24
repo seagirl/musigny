@@ -8,6 +8,7 @@ interface Options {
   verbose: boolean;
   force: boolean;
   test: boolean;
+  apiName?: string;
   className?: string;
   entityName?: string;
   templatesDir?: string;
@@ -17,6 +18,7 @@ export const generate = (input: string, options: Options): void => {
   const output = options.output || '.'
 
   const target = Parser.parse(input, {
+    apiName: options.apiName,
     className: options.className,
     entityName: options.entityName
   })
