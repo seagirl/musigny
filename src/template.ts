@@ -52,8 +52,6 @@ export class Template {
     content = content.replace(/basic\.usecase/g, `${Util.kebabCase(target.className)}.usecase`)
     content = content.replace(/basic\.adapter/g, `${Util.kebabCase(target.className)}.adapter`)
 
-    console.log(target.apiType)
-
     switch (target.apiType) {
       case APIType.index:
         content = content.replace(/\/\/ musigny-index /g, '')
