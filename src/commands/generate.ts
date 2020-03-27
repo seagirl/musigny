@@ -11,6 +11,7 @@ interface Options {
   apiName?: string;
   className?: string;
   entityName?: string;
+  dbEntityName?: string;
   templatesDir?: string;
 }
 
@@ -20,7 +21,8 @@ export const generate = (input: string, options: Options): void => {
   const target = Parser.parse(input, {
     apiName: options.apiName,
     className: options.className,
-    entityName: options.entityName
+    entityName: options.entityName,
+    dbEntityName: options.dbEntityName
   })
 
   if (options.verbose) {

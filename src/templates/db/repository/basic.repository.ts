@@ -2,7 +2,7 @@ import { EntityManager, getManager } from 'typeorm'
 import { MusignyEntityNameBasicRepository as MusignyEntityNameBasicRepositoryInterfaceInterface, SearchInput } from '../../app/repository/basic.repository'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
-import { MusignyEntityNameBasic } from '../row/basic.row'
+import { MusignyDBEntityNameBasic } from '../entity/basic.db-entity'
 
 export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicRepositoryInterfaceInterface {
   private manager: EntityManager = getManager()
@@ -12,7 +12,7 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
       .select([
         'nextval(\'MusignyEntityNameBasicSnakes_id_seq\'::regclass)::int as id'
       ])
-      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicSnakes')
+      .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
       .limit(1)
       .getRawOne()
     return row.id
@@ -23,7 +23,7 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
       .select([
         'MusignyEntityNameBasicSnakes.id as id'
       ])
-      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicSnakes')
+      .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
       .orderBy('MusignyEntityNameBasicSnakes.id')
       .limit(input.limit)
       .offset(input.offset)
@@ -42,7 +42,7 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
       .select([
         'MusignyEntityNameBasicSnakes.id as id',
       ])
-      .from(MusignyEntityNameBasic, 'MusignyEntityNameBasicSnakes')
+      .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
       .where('MusignyEntityNameBasicSnakes.id = :id', { id: id })
       .orderBy('MusignyEntityNameBasicSnakes.id')
       .getRawOne()
@@ -56,13 +56,13 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
   }
 
   async save (entity: MusignyEntityNameBasicEntity): Promise<void> {
-    const repository = this.manager.getRepository(MusignyEntityNameBasic)
+    const repository = this.manager.getRepository(MusignyDBEntityNameBasic)
     const row = await repository.findOne({ where: { id: entity.id } })
 
     if (!row) {
       await this.manager.createQueryBuilder()
         .insert()
-        .into(MusignyEntityNameBasic, ['id'])
+        .into(MusignyDBEntityNameBasic, ['id'])
         .values({ id: entity.id })
         .execute()
     }
@@ -71,7 +71,7 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
   async delete (entity: MusignyEntityNameBasicEntity): Promise<void> {
     await this.manager.createQueryBuilder()
       .delete()
-      .from(MusignyEntityNameBasic)
+      .from(MusignyDBEntityNameBasic)
       .where({ id: entity.id })
       .execute()
   }

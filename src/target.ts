@@ -45,6 +45,7 @@ export class Target {
     public readonly apiType: APIType,
     public readonly className: string,
     public readonly entityName: string,
+    public readonly dbEntityName: string,
     public readonly config: Config = Config.basic
   ) {}
 

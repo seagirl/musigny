@@ -9,20 +9,24 @@ interface Options {
   apiName?: string;
   className?: string;
   entityName?: string;
+  dbEntityName?: string;
   templatesDir?: string;
 }
 
 export const generateAPI = (apiName: string, entityName: string, options: Options): void => {
-  console.log(`generateAPI ${apiName} ${entityName}`)
+  const dbEntityName = options.dbEntityName ?? pluralize(entityName)
+  console.log(`generateAPI ${apiName} ${entityName} ${dbEntityName}`)
+
   options.apiName = apiName
   options.entityName = entityName
+  options.dbEntityName = dbEntityName
 
   generate(`domain/entity/${entityName}.entity`, options)
   generate(`domain/factory/${entityName}.factory`, options)
+  generate(`db/repository/${entityName}.repository`, options)
+  generate(`db/entity/${dbEntityName}`, options)
   generate(`app/repository/${entityName}.repository`, options)
   generate(`app/usecase/${entityName}/${apiName}.usecase`, options)
-  generate(`db/repository/${entityName}.repository`, options)
-  generate(`db/entity/${pluralize(entityName)}`, options)
   generate(`web/adapter/${entityName}.translator`, options)
   generate(`web/adapter/${entityName}/${apiName}.adapter`, options)
   generate(`web/builder/${entityName}/${apiName}.builder`, options)

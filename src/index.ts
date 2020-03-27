@@ -22,6 +22,7 @@ async function main (): Promise<void> {
     .option('--no-test')
     .option('--class-name <className>')
     .option('--entity-name <entityName>')
+    .option('--db-entity-name <dbEntityName>')
     .action(generate)
 
   commander
@@ -32,6 +33,7 @@ async function main (): Promise<void> {
     .option('--no-test')
     .option('--class-name <className>')
     .option('--entity-name <entityName>')
+    .option('--db-entity-name <dbEntityName>')
     .action(generateAPI)
 
   commander.parse(process.argv)

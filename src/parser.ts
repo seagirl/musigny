@@ -5,6 +5,7 @@ interface Options {
   apiName?: string;
   className?: string;
   entityName?: string;
+  dbEntityName?: string;
 }
 
 export function toEnum<T, E extends keyof T> (enumType: T, value: E | string): T[E] | undefined {
@@ -19,6 +20,7 @@ export class Parser {
 
   private className?: string
   private entityName?: string
+  private dbEntityName?: string
   private categoryName?: string
   private typeName?: string
 
@@ -35,11 +37,16 @@ export class Parser {
       this.entityName = options.entityName
     }
 
+    this.dbEntityName = this.entityName
+    if (options?.dbEntityName != null) {
+      this.dbEntityName = options.dbEntityName
+    }
+
     const category = this.parseCategory()
     const type = this.parseType(category)
     const apiType = this.parseAPIType(options)
 
-    return new Target(path, category, type, apiType, this.className, this.entityName)
+    return new Target(path, category, type, apiType, this.className, this.entityName, this.dbEntityName)
   }
 
   parseFlagments (path: string): void {

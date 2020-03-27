@@ -37,19 +37,23 @@ export class Template {
   replaceVariables (content: string, target: Target): string {
     content = content.replace(/MusignyClassNameBasicKebab/g, Util.kebabCase(target.className))
     content = content.replace(/MusignyEntityNameBasicKebab/g, Util.kebabCase(target.entityName))
+    content = content.replace(/MusignyDBEntityNameBasicKebab/g, Util.kebabCase(target.dbEntityName))
     content = content.replace(/MusignyClassNameBasicSnake/g, Util.snakeCase(target.className))
     content = content.replace(/MusignyEntityNameBasicSnake/g, Util.snakeCase(target.entityName))
+    content = content.replace(/MusignyDBEntityNameBasicSnake/g, Util.snakeCase(target.dbEntityName))
     content = content.replace(/MusignyClassNameBasic/g, Util.upperCamelCase(target.className))
     content = content.replace(/MusignyEntityNameBasic/g, Util.upperCamelCase(target.entityName))
+    content = content.replace(/MusignyDBEntityNameBasic/g, Util.upperCamelCase(target.dbEntityName))
 
     content = content.replace(/\/entity-name/g, `/${Util.kebabCase(target.entityName)}`)
+    content = content.replace(/\/db-entity-name/g, `/${Util.kebabCase(target.dbEntityName)}`)
 
     content = content.replace(/basic\.repository/g, `${Util.kebabCase(target.entityName)}.repository`)
     content = content.replace(/basic\.entity/g, `${Util.kebabCase(target.entityName)}.entity`)
+    content = content.replace(/basic\.db-entity/g, `${Util.kebabCase(target.dbEntityName)}`)
     content = content.replace(/basic\.value-object/g, `${Util.kebabCase(target.entityName)}.value-object`)
     content = content.replace(/basic\.view-model/g, `${Util.kebabCase(target.entityName)}.view-model`)
     content = content.replace(/basic\.factory/g, `${Util.kebabCase(target.entityName)}.factory`)
-    content = content.replace(/basic\.row/g, `${Util.kebabCase(target.entityName)}`)
 
     content = content.replace(/basic\.usecase/g, `${Util.kebabCase(target.className)}.usecase`)
     content = content.replace(/basic\.adapter/g, `${Util.kebabCase(target.className)}.adapter`)

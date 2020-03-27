@@ -22,7 +22,7 @@ describe('Template', () => {
 
   it('renderTo', () => {
     const template = new Template(templatePath)
-    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user')
+    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user', 'users')
     const outputPath = 'test-out/template.ts'
     template.renderTo(outputPath, target, false)
     expect(fs.existsSync(outputPath)).toEqual(true)
@@ -33,7 +33,7 @@ describe('Template', () => {
 
   it('replaceVariables', () => {
     const template = new Template(templatePath)
-    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user')
+    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user', 'users')
 
     const contet = `
       MusignyClassNameBasicKebab
@@ -48,7 +48,7 @@ describe('Template', () => {
       basic.value-object
       basic.view-model
       basic.factory
-      basic.row
+      basic.db-entity
       basic.usecase
       basic.adapter
     `
@@ -66,7 +66,7 @@ describe('Template', () => {
       user.value-object
       user.view-model
       user.factory
-      user
+      users
       get-users.usecase
       get-users.adapter
     `)
@@ -74,7 +74,7 @@ describe('Template', () => {
 
   it('replaceComments', () => {
     const template = new Template(templatePath)
-    const target = new Target('web/express/api/user.api', Category.web, Type.api, APIType.index, 'get-users', 'user')
+    const target = new Target('web/express/api/user.api', Category.web, Type.api, APIType.index, 'get-users', 'user', 'users')
 
     const contet = `
       // musigny-index hogehoge

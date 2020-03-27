@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm'
 
-@Entity('MusignyEntityNameBasicSnake', { schema: 'public' })
-export class MusignyEntityNameBasic {
+@Entity('MusignyDBEntityNameBasicSnake', { schema: 'public' })
+export class MusignyDBEntityNameBasic {
   @PrimaryGeneratedColumn({
     type: 'integer',
     name: 'id'
