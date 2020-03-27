@@ -12,7 +12,7 @@ describe('generate-api command', () => {
       'src/templates/app/repository/basic.repository.ts': 'dummy',
       'src/templates/app/usecase/entity-name/basic.usecase.ts': 'dummy',
       'src/templates/db/repository/basic.repository.ts': 'dummy',
-      'src/templates/db/row/basic.row.ts': 'dummy',
+      'src/templates/db/entity/basic.entity.ts': 'dummy',
       'src/templates/web/adapter/basic.translator.ts': 'dummy',
       'src/templates/web/adapter/entity-name/basic.adapter.ts': 'dummy',
       'src/templates/web/builder/entity-name/basic.builder.ts': 'dummy',
@@ -33,16 +33,16 @@ describe('generate-api command', () => {
       templatesDir: '../templates'
     })
 
-    expect(fs.existsSync(`test-out/src/domain/entity/user.entity.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/domain/factory/user.factory.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/app/repository/user.repository.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/app/usecase/user/get-users.usecase.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/db/repository/user.repository.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/db/row/user.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/web/adapter/user.translator.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/web/adapter/user/get-users.adapter.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/web/builder/user/get-users.builder.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/web/express/api/user.api.ts`)).toBe(true)
-    expect(fs.existsSync(`test-out/src/web/view-model/user.view-model.ts`)).toBe(true)
+    expect(fs.existsSync('test-out/src/domain/entity/user.entity.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/domain/factory/user.factory.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/app/repository/user.repository.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/app/usecase/user/get-users.usecase.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/db/repository/user.repository.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/db/entity/users.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/web/adapter/user.translator.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/web/adapter/user/get-users.adapter.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/web/builder/user/get-users.builder.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/web/express/api/user.api.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/web/view-model/user.view-model.ts')).toBe(true)
   })
 })

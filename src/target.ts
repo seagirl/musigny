@@ -25,7 +25,6 @@ export enum Type {
   builder             = 'builder',
   api                 = 'api',
   repository          = 'repository',
-  row                 = 'row',
   unknown             = 'unknown',
 }
 
@@ -52,7 +51,13 @@ export class Target {
   get templatePath (): string {
     switch (this.type) {
       case Type.entity:
-        return `domain/entity/${this.config}.entity`
+        if (this.category === Category.domain) {
+          return `domain/entity/${this.config}.entity`
+        }
+        else if (this.category === Category.db) {
+          return `db/entity/${this.config}.entity`
+        }
+        break
       case Type.factory:
         return `domain/factory/${this.config}.factory`
       case Type.valueObject:
@@ -77,8 +82,6 @@ export class Target {
         return `web/express/api/${this.config}.api`
       case Type.repository:
         return `db/repository/${this.config}.repository`
-      case Type.row:
-        return `db/row/${this.config}.row`
     }
 
     throw new Error(`Unsupported type: ${this.type}`)

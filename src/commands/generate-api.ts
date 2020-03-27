@@ -1,3 +1,4 @@
+import pluralize from 'pluralize'
 import { generate } from './generate'
 
 interface Options {
@@ -21,7 +22,7 @@ export const generateAPI = (apiName: string, entityName: string, options: Option
   generate(`app/repository/${entityName}.repository`, options)
   generate(`app/usecase/${entityName}/${apiName}.usecase`, options)
   generate(`db/repository/${entityName}.repository`, options)
-  generate(`db/row/${entityName}`, options)
+  generate(`db/entity/${pluralize(entityName)}`, options)
   generate(`web/adapter/${entityName}.translator`, options)
   generate(`web/adapter/${entityName}/${apiName}.adapter`, options)
   generate(`web/builder/${entityName}/${apiName}.builder`, options)

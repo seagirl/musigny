@@ -23,8 +23,8 @@ describe('Parser', () => {
     expect(Parser.parse('db/repository/user.repository'))
       .toEqual(new Target('db/repository/user.repository', Category.db, Type.repository, APIType.unknown, 'user', 'user'))
 
-    expect(Parser.parse('db/row/user.row'))
-      .toEqual(new Target('db/row/user.row', Category.db, Type.row, APIType.unknown, 'user', 'user'))
+    expect(Parser.parse('db/entity/users'))
+      .toEqual(new Target('db/entity/users', Category.db, Type.entity, APIType.unknown, 'users', 'users'))
 
     expect(Parser.parse('web/adapter/user.translator'))
       .toEqual(new Target('web/adapter/user.translator', Category.web, Type.translator, APIType.unknown, 'user', 'user'))
