@@ -1,5 +1,5 @@
 export class MusignyEntityNameBasicValueObject {
   constructor (
-    public readonly name: string,
+    public readonly rawValue: string,
   ) {}
 }

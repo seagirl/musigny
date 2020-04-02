@@ -4,7 +4,7 @@ describe('MusignyEntityNameBasicValueObject', () => {
   it('new', () => {
     expect(new MusignyEntityNameBasicValueObject('test')).toEqual(
       expect.objectContaining({
-        name: 'test'
+        rawValue: 'test'
       })
     )
   })
