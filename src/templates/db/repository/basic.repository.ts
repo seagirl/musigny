@@ -12,7 +12,7 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
       .select([
         'nextval(\'MusignyEntityNameBasicSnakes_id_seq\'::regclass)::int as id'
       ])
-      .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
+      .from('MusignyEntityNameBasicSnakes_id_seq', 'MusignyEntityNameBasicSnakes_id_seq')
       .limit(1)
       .getRawOne()
     return row.id
@@ -60,10 +60,22 @@ export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicR
     const row = await repository.findOne({ where: { id: entity.id } })
 
     if (!row) {
+      const values = {
+        id: entity.id
+      }
+
       await this.manager.createQueryBuilder()
         .insert()
-        .into(MusignyDBEntityNameBasic, ['id'])
-        .values({ id: entity.id })
+        .into(MusignyDBEntityNameBasic, Object.keys(values))
+        .values(values)
+        .execute()
+    } else {
+      await this.manager.createQueryBuilder()
+        .update(MusignyDBEntityNameBasic)
+        .set({
+          id: entity.id
+        })
+        .where('id = :id', { id: entity.id })
         .execute()
     }
   }
