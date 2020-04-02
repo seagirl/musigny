@@ -9,8 +9,8 @@ export interface SearchInput {
 export interface MusignyEntityNameBasicRepository extends IdentifierGenerator<number> {
   search(input?: SearchInput): Promise<MusignyEntityNameBasicEntity[]>;
   find(id: number): Promise<MusignyEntityNameBasicEntity | undefined>;
-  save(member: MusignyEntityNameBasicEntity): Promise<void>;
-  delete(member: MusignyEntityNameBasicEntity): Promise<void>;
+  save(entity: MusignyEntityNameBasicEntity): Promise<void>;
+  delete(entity: MusignyEntityNameBasicEntity): Promise<void>;
 }
 
 export class MockMusignyEntityNameBasicRepository implements MusignyEntityNameBasicRepository {
