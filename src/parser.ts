@@ -1,4 +1,5 @@
-import { Category, Type, Target, APIType } from './target'
+import pluralize from 'pluralize'
+import { APIType, Category, Target, Type } from './target'
 import { Util } from './util'
 
 interface Options {
@@ -37,7 +38,7 @@ export class Parser {
       this.entityName = options.entityName
     }
 
-    this.dbEntityName = this.entityName
+    this.dbEntityName = pluralize(this.entityName)
     if (options?.dbEntityName != null) {
       this.dbEntityName = options.dbEntityName
     }
