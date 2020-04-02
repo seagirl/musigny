@@ -1,3 +1,3 @@
-export interface IdentifierGenerator {
-  nextIdentifier(): Promise<number>;
+export interface IdentifierGenerator<T> {
+  nextIdentifier(): Promise<T>;
 }
