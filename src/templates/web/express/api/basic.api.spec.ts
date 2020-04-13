@@ -65,8 +65,8 @@ describe('MusignyEntityNameBasic API', () => {
 
   // musigny-edit it('PUT /api/MusignyEntityNameBasicSnakes/:id', async () => {
   // musigny-edit   const request = supertest(app.express)
-  // musigny-edit   let response = await request.put('/api/MusignyEntityNameBasicSnakes/' + testId)
-  // musigny-edit   let body = response.body
+  // musigny-edit   const response = await request.put('/api/MusignyEntityNameBasicSnakes/' + testId)
+  // musigny-edit   const body = response.body
 
   // musigny-edit   if (response.status != 200)
   // musigny-edit     console.log(response.text)
