@@ -36,7 +36,7 @@ describe('MusignyEntityNameBasic API', () => {
   // musigny-index   expect(response.status).toBe(200)
   // musigny-index   expect(body.response).toBe('ok')
 
-  // musigny-index   expect(body.members).toEqual(
+  // musigny-index   expect(body.MusignyEntityNameBasicSnakes).toEqual(
   // musigny-index     expect.arrayContaining([
   // musigny-index       expect.objectContaining({
   // musigny-index         id: testId,
@@ -56,7 +56,7 @@ describe('MusignyEntityNameBasic API', () => {
   // musigny-show   expect(response.status).toBe(200)
   // musigny-show   expect(body.response).toBe('ok')
 
-  // musigny-show   expect(body.member).toEqual(
+  // musigny-show   expect(body.MusignyEntityNameBasicSnake).toEqual(
   // musigny-show     expect.objectContaining({
   // musigny-show       id: testId
   // musigny-show     })
