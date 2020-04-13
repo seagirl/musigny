@@ -1,8 +1,8 @@
-import { MusignyClassNameBasicUseCaseOutput } from '../../../app/usecase/entity-name/basic.usecase'
-import { Controller, Presenter, Request, Usecase } from '../../../core'
+import { MusignyClassNameBasicInteractor, MusignyClassNameBasicUseCaseOutput } from '../../../app/usecase/entity-name/basic.usecase'
+import { Controller, Presenter, Request } from '../../../core'
 
 export class MusignyClassNameBasicController implements Controller {
-  constructor (public interactor: Usecase) {}
+  constructor (public interactor: MusignyClassNameBasicInteractor) {}
 
   handle (input: Request): Promise<MusignyClassNameBasicUseCaseOutput> {
     return this.interactor.execute({
