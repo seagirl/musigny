@@ -1,10 +1,10 @@
 import { EntityManager, getManager } from 'typeorm'
-import { MusignyEntityNameBasicRepository as MusignyEntityNameBasicRepositoryInterfaceInterface, SearchInput } from '../../app/repository/basic.repository'
+import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput } from '../../app/repository/basic.repository'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
 import { MusignyDBEntityNameBasic } from '../entity/basic.db-entity'
 
-export class MusignyEntityNameBasicRepository implements MusignyEntityNameBasicRepositoryInterfaceInterface {
+export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   private manager: EntityManager = getManager()
 
   async nextIdentifier (): Promise<number> {
