@@ -1,5 +1,5 @@
 import { EntityManager, getManager } from 'typeorm'
-import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput } from '../../app/repository/basic.repository'
+import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput, SearchOutput } from '../../app/repository/basic.repository'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
 import { MusignyDBEntityNameBasic } from '../entity/basic.db-entity'
@@ -18,23 +18,36 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
     return row.id
   }
 
-  async search (input: SearchInput = {}): Promise<MusignyEntityNameBasicEntity[]> {
+  async search (input: SearchInput = {}): Promise<SearchOutput> {
+    const limit = input.limit ?? 5000
+
     const query = this.manager.createQueryBuilder()
       .select([
         'MusignyEntityNameBasicSnakes.id as id'
       ])
       .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
       .orderBy('MusignyEntityNameBasicSnakes.id')
-      .limit(input.limit)
+      .limit(limit + 1)
       .offset(input.offset)
 
     const rows = await query.getRawMany()
 
-    return rows.map(row => {
+    let hasNext = false
+    if (rows.length > limit) {
+      hasNext = true
+      rows.pop()
+    }
+
+    const entities = rows.map(row => {
       return MusignyEntityNameBasicFactory.create({
         id: row.id,
       })
     })
+
+    return {
+      entities: entities,
+      hasNext: hasNext
+    }
   }
 
   async find (id: number): Promise<MusignyEntityNameBasicEntity | undefined> {

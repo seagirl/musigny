@@ -34,13 +34,14 @@ describe('MusignyEntityNameBasicRepository', () => {
     const repository = new MusignyEntityNameBasicRepository()
     const result = await repository.search()
 
-    expect(result).toEqual(
-      expect.arrayContaining([
+    expect(result).toEqual({
+      hasNext: expect.any(Boolean),
+      entities: expect.arrayContaining([
         expect.objectContaining({
-          id: expect.any(Number)
+          id: expect.any(Number),
         })
       ])
-    )
+    })
   })
 
   it('search with params', async () => {
@@ -50,16 +51,17 @@ describe('MusignyEntityNameBasicRepository', () => {
       offset: 0
     })
 
-    if (result.length == 0)
+    if (result.entities.length == 0)
       return
 
-    expect(result).toEqual(
-      expect.arrayContaining([
+    expect(result).toEqual({
+      hasNext: expect.any(Boolean),
+      entities: expect.arrayContaining([
         expect.objectContaining({
-          id: expect.any(Number)
+          id: expect.any(Number),
         })
       ])
-    )
+    })
   })
 
   it('find', async () => {
