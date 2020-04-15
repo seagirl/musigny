@@ -19,10 +19,13 @@ describe('MusignyClassNameBasicInteractor', () => {
   })
 
   it('execute', async () => {
-    //repositorySearchSpy.mockReturnValue(Promise.resolve([]))
+    //repositorySearchSpy.mockReturnValue(Promise.resolve({ entities: [], hasNext: false }))
 
     const result = await interactor.execute({})
-    expect(result).toEqual({})
+    expect(result).toEqual({
+      hasNext: false,
+      entities: []
+    })
 
     //expect(repositorySearchSpy).toHaveBeenCalledTimes(1)
   })
