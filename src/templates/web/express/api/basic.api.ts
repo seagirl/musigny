@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response, Router } from 'express'
-// musigny-index import { GetMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicSnakes.builder'
-// musigny-show import { GetMusignyEntityNameBasicBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicSnake.builder'
-// musigny-new import { PostMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/post-MusignyEntityNameBasicSnakes.builder'
-// musigny-edit import { PutMusignyEntityNameBasicBuilder } from '../../builder/entity-name/put-MusignyEntityNameBasicSnake.builder'
-// musigny-destroy import { DeleteMusignyEntityNameBasicBuilder } from '../../builder/entity-name/delete-MusignyEntityNameBasicSnake.builder'
+// musigny-index import { GetMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicKebabs.builder'
+// musigny-show import { GetMusignyEntityNameBasicBuilder } from '../../builder/entity-name/get-MusignyEntityNameBasicKebab.builder'
+// musigny-new import { PostMusignyEntityNameBasicsBuilder } from '../../builder/entity-name/post-MusignyEntityNameBasicKebabs.builder'
+// musigny-edit import { PutMusignyEntityNameBasicBuilder } from '../../builder/entity-name/put-MusignyEntityNameBasicKebab.builder'
+// musigny-destroy import { DeleteMusignyEntityNameBasicBuilder } from '../../builder/entity-name/delete-MusignyEntityNameBasicKebab.builder'
 import { handle } from '../util'
 
 const router = Router()
