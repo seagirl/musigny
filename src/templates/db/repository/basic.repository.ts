@@ -1,5 +1,6 @@
 import { EntityManager, getManager } from 'typeorm'
-import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput, SearchOutput } from '../../app/repository/basic.repository'
+import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput, SearchOutput, SearchSortKey } from '../../app/repository/basic.repository'
+import { SortOrder } from '../../core'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
 import { MusignyDBEntityNameBasic } from '../entity/basic.db-entity'
@@ -19,6 +20,8 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   }
 
   async search (input: SearchInput = {}): Promise<SearchOutput> {
+    const sortKey = input.sortKey ?? SearchSortKey.createdAt
+    const sortOrder = input.sortOrder ?? SortOrder.DESC
     const limit = input.limit ?? 5000
 
     const query = this.manager.createQueryBuilder()
@@ -29,6 +32,16 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
       .orderBy('MusignyEntityNameBasicSnakes.id')
       .limit(limit + 1)
       .offset(input.offset)
+
+    switch (sortKey) {
+      case SearchSortKey.createdAt:
+        query.addOrderBy('MusignyEntityNameBasicSnakes.created_at', sortOrder)
+        break
+      default:
+        break
+    }
+
+    query.addOrderBy('MusignyEntityNameBasicSnakes.id', SortOrder.DESC)
 
     const rows = await query.getRawMany()
 

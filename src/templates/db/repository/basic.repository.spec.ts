@@ -1,6 +1,8 @@
-import { MusignyEntityNameBasicRepository } from './basic.repository'
+import { SearchSortKey } from '../../app/repository/basic.repository'
+import { SortOrder } from '../../core'
 import { DB } from '../../db'
 import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
+import { MusignyEntityNameBasicRepository } from './basic.repository'
 
 const db = new DB()
 const testId = 1
@@ -47,6 +49,8 @@ describe('MusignyEntityNameBasicRepository', () => {
   it('search with params', async () => {
     const repository = new MusignyEntityNameBasicRepository()
     const result = await repository.search({
+      sortKey: SearchSortKey.id,
+      sortOrder: SortOrder.ASC,
       limit: 100,
       offset: 0
     })
