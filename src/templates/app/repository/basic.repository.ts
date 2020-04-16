@@ -1,7 +1,9 @@
-import { IdentifierGenerator } from '../../core'
+import { IdentifierGenerator, SortOrder } from '../../core'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 
 export interface SearchInput {
+  sortKey?: SearchSortKey;
+  sortOrder?: SortOrder;
   limit?: number;
   offset?: number;
 }
@@ -9,6 +11,11 @@ export interface SearchInput {
 export interface SearchOutput {
   entities: MusignyEntityNameBasicEntity[];
   hasNext: boolean;
+}
+
+export enum SearchSortKey {
+  id = 'id',
+  createdAt = 'created_at',
 }
 
 export interface MusignyEntityNameBasicRepository extends IdentifierGenerator<number> {
