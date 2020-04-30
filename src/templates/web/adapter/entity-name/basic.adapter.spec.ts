@@ -1,5 +1,5 @@
 import { MusignyClassNameBasicController, MusignyClassNameBasicPresenter } from './basic.adapter'
-import { MusignyClassNameBasicInteractor } from '../../../app/usecase/entity-name/basic.usecase'
+import { MusignyClassNameBasicInteractor, MusignyClassNameBasicUseCaseInput, MusignyClassNameBasicUseCaseOutput } from '../../../app/usecase/entity-name/basic.usecase'
 import { MockMusignyEntityNameBasicRepository } from '../../../app/repository/basic.repository'
 
 const repository = new MockMusignyEntityNameBasicRepository()
@@ -24,7 +24,13 @@ describe('MusignyClassNameBasicAdapter', () => {
   })
 
   it('handle and present', async () => {
-    interactorSpy.mockReturnValue(Promise.resolve({}))
+    interactorSpy.mockImplementation((input: MusignyClassNameBasicUseCaseInput): Promise<MusignyClassNameBasicUseCaseOutput> => {
+      expect(input).toEqual({
+      })
+
+      return Promise.resolve({
+      })
+    })
 
     const result = await controller.handle({
       query: {},
