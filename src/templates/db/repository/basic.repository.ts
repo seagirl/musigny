@@ -9,7 +9,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   private manager: EntityManager = getManager()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private createQuery (): SelectQueryBuilder<any> {
+  private createSelectQuery (): SelectQueryBuilder<any> {
     return this.manager.createQueryBuilder()
       .select([
         'MusignyEntityNameBasicSnakes.id as id'
@@ -40,7 +40,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
     const sortOrder = input.sortOrder ?? SortOrder.DESC
     const limit = input.limit ?? 5000
 
-    const query = this.createQuery()
+    const query = this.createSelectQuery()
       .limit(limit + 1)
       .offset(input.offset)
 
@@ -73,7 +73,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   }
 
   async find (id: number): Promise<MusignyEntityNameBasicEntity | undefined> {
-    const row = await this.createQuery()
+    const row = await this.createSelectQuery()
       .where('MusignyEntityNameBasicSnakes.id = :id', { id: id })
       .orderBy('MusignyEntityNameBasicSnakes.id')
       .getRawOne()
