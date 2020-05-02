@@ -1,4 +1,4 @@
-import { EntityManager, getManager } from 'typeorm'
+import { EntityManager, getManager, SelectQueryBuilder } from 'typeorm'
 import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput, SearchOutput, SearchSortKey } from '../../app/repository/basic.repository'
 import { SortOrder } from '../../core'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
@@ -7,6 +7,22 @@ import { MusignyDBEntityNameBasic } from '../entity/basic.db-entity'
 
 export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   private manager: EntityManager = getManager()
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private createQuery (): SelectQueryBuilder<any> {
+    return this.manager.createQueryBuilder()
+      .select([
+        'MusignyEntityNameBasicSnakes.id as id'
+      ])
+      .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private translate (row: any): MusignyEntityNameBasicEntity {
+    return MusignyEntityNameBasicFactory.create({
+      id: row.id,
+    })
+  }
 
   async nextIdentifier (): Promise<number> {
     const row = await getManager().createQueryBuilder()
@@ -24,11 +40,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
     const sortOrder = input.sortOrder ?? SortOrder.DESC
     const limit = input.limit ?? 5000
 
-    const query = this.manager.createQueryBuilder()
-      .select([
-        'MusignyEntityNameBasicSnakes.id as id'
-      ])
-      .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
+    const query = this.createQuery()
       .limit(limit + 1)
       .offset(input.offset)
 
@@ -51,9 +63,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
     }
 
     const entities = rows.map(row => {
-      return MusignyEntityNameBasicFactory.create({
-        id: row.id,
-      })
+      return this.translate(row)
     })
 
     return {
@@ -63,11 +73,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   }
 
   async find (id: number): Promise<MusignyEntityNameBasicEntity | undefined> {
-    const row = await this.manager.createQueryBuilder()
-      .select([
-        'MusignyEntityNameBasicSnakes.id as id',
-      ])
-      .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
+    const row = await this.createQuery()
       .where('MusignyEntityNameBasicSnakes.id = :id', { id: id })
       .orderBy('MusignyEntityNameBasicSnakes.id')
       .getRawOne()
@@ -75,9 +81,8 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
     if (!row) {
       return
     }
-    return MusignyEntityNameBasicFactory.create({
-      id: row.id,
-    })
+
+    return this.translate(row)
   }
 
   async save (entity: MusignyEntityNameBasicEntity): Promise<void> {
