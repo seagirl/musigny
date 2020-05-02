@@ -29,7 +29,6 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
         'MusignyEntityNameBasicSnakes.id as id'
       ])
       .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
-      .orderBy('MusignyEntityNameBasicSnakes.id')
       .limit(limit + 1)
       .offset(input.offset)
 
