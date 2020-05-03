@@ -6,7 +6,7 @@ import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factor
 import { MusignyEntityNameBasicRepository } from './basic.repository'
 
 const db = new DB()
-let testId = 1
+let testId: number
 
 describe('MusignyEntityNameBasicRepository', () => {
   beforeAll(async () => {
@@ -49,9 +49,6 @@ describe('MusignyEntityNameBasicRepository', () => {
       limit: 100,
       offset: 0
     })
-
-    if (result.entities.length == 0)
-      return
 
     expect(result).toEqual({
       hasNext: expect.any(Boolean),
