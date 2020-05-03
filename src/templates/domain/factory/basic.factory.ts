@@ -10,4 +10,10 @@ export class MusignyEntityNameBasicFactory {
       input.id,
     )
   }
+
+  static createFrom (entity: MusignyEntityNameBasicFactoryInput, input: Omit<MusignyEntityNameBasicFactoryInput, 'id'>): MusignyEntityNameBasicEntity {
+    return new MusignyEntityNameBasicEntity(
+      entity.id,
+    )
+  }
 }

@@ -12,4 +12,16 @@ describe('MusignyEntityNameBasic Factory', () => {
       })
     )
   })
+
+  it('createFrom', () => {
+    const entity = MusignyEntityNameBasicFactory.create({ id: testId })
+    const result = MusignyEntityNameBasicFactory.createFrom(entity, {
+    })
+
+    expect(result).toEqual(
+      expect.objectContaining({
+        id: 1,
+      })
+    )
+  })
 })

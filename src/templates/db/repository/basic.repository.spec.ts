@@ -1,11 +1,12 @@
 import { SearchSortKey } from '../../app/repository/basic.repository'
 import { SortOrder } from '../../core'
 import { DB } from '../../db'
+import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
 import { MusignyEntityNameBasicRepository } from './basic.repository'
 
 const db = new DB()
-const testId = 1
+let testId = 1
 
 describe('MusignyEntityNameBasicRepository', () => {
   beforeAll(async () => {
@@ -22,14 +23,12 @@ describe('MusignyEntityNameBasicRepository', () => {
     const id = await repository.nextIdentifier()
     const entity = MusignyEntityNameBasicFactory.create({ id: id })
 
+    testId = id
+
     await repository.save(entity)
     const result = await repository.find(entity.id)
 
-    expect(result).toEqual(
-      expect.objectContaining({
-        id: entity.id,
-      })
-    )
+    expect(result).toEqual(entity)
   })
 
   it('search', async () => {
@@ -38,11 +37,7 @@ describe('MusignyEntityNameBasicRepository', () => {
 
     expect(result).toEqual({
       hasNext: expect.any(Boolean),
-      entities: expect.arrayContaining([
-        expect.objectContaining({
-          id: expect.any(Number),
-        })
-      ])
+      entities: expect.arrayContaining([ expect.any(MusignyEntityNameBasicEntity) ])
     })
   })
 
@@ -60,23 +55,14 @@ describe('MusignyEntityNameBasicRepository', () => {
 
     expect(result).toEqual({
       hasNext: expect.any(Boolean),
-      entities: expect.arrayContaining([
-        expect.objectContaining({
-          id: expect.any(Number),
-        })
-      ])
+      entities: expect.arrayContaining([ expect.any(MusignyEntityNameBasicEntity) ])
     })
   })
 
   it('find', async () => {
     const repository = new MusignyEntityNameBasicRepository()
     const result = await repository.find(testId)
-
-    expect(result).toEqual(
-      expect.objectContaining({
-        id: expect.any(Number)
-      })
-    )
+    expect(result).toEqual(expect.any(MusignyEntityNameBasicEntity))
   })
 
   it('update', async () => {
@@ -88,15 +74,11 @@ describe('MusignyEntityNameBasicRepository', () => {
       return
     }
 
-    await repository.save(entity)
+    const newEntity = MusignyEntityNameBasicFactory.createFrom(entity, {})
+    await repository.save(newEntity)
 
-    const result = await repository.find(entity.id)
-
-    expect(result).toEqual(
-      expect.objectContaining({
-        id: entity.id
-      })
-    )
+    const result = await repository.find(newEntity.id)
+    expect(result).toEqual(newEntity)
   })
 
   it('delete', async () => {
