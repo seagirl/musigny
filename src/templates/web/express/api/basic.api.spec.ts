@@ -1,7 +1,8 @@
 import supertest from 'supertest'
 import Application from '../app'
 
-const testId = 1
+let testId: number
+
 const app = new Application()
 
 describe('MusignyEntityNameBasic API', () => {
@@ -15,12 +16,18 @@ describe('MusignyEntityNameBasic API', () => {
 
   // musigny-new it('POST /api/MusignyEntityNameBasicSnakes', async () => {
   // musigny-new   const request = supertest(app.express)
-  // musigny-new   const response = await request.post('/api/MusignyEntityNameBasicSnakes').query({ id: testId })
+  // musigny-new   const response = await request.post('/api/MusignyEntityNameBasicSnakes')
+  // musigny-new     .set('Content-Type', 'application/json')
+  // musigny-new     .set('Accept', 'application/json')
+  // musigny-new     .send({
+  // musigny-new       title: 'hogehoge'
+  // musigny-new     })
 
   // musigny-new   if (response.status != 200)
   // musigny-new     console.log(response.text)
 
   // musigny-new   expect(response.status).toBe(200)
+  // musigny-new   testId = response.body.id
   // musigny-new })
 
   // musigny-index it('GET /api/MusignyEntityNameBasicSnakes', async () => {

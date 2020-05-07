@@ -12,7 +12,7 @@ const router = Router()
 // musigny-index   await handle(new GetMusignyEntityNameBasicsBuilder(), req, res, next)
 // musigny-index })
 
-// musigny-show router.get('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
+// musigny-show router.get('/MusignyEntityNameBasicSnakes/:MusignyEntityNameBasicSnake_id', async (req: Request, res: Response, next: NextFunction) => {
 // musigny-show   await handle(new GetMusignyEntityNameBasicBuilder(), req, res, next)
 // musigny-show })
 
@@ -20,11 +20,11 @@ const router = Router()
 // musigny-new   await handle(new PostMusignyEntityNameBasicsBuilder(), req, res, next)
 // musigny-new })
 
-// musigny-edit router.put('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
+// musigny-edit router.put('/MusignyEntityNameBasicSnakes/:MusignyEntityNameBasicSnake_id', async (req: Request, res: Response, next: NextFunction) => {
 // musigny-edit   await handle(new PutMusignyEntityNameBasicBuilder(), req, res, next)
 // musigny-edit })
 
-// musigny-destroy router.delete('/MusignyEntityNameBasicSnakes/:id', async (req: Request, res: Response, next: NextFunction) => {
+// musigny-destroy router.delete('/MusignyEntityNameBasicSnakes/:MusignyEntityNameBasicSnake_id', async (req: Request, res: Response, next: NextFunction) => {
 // musigny-destroy   await handle(new DeleteMusignyEntityNameBasicBuilder(), req, res, next)
 // musigny-destroy })
 
