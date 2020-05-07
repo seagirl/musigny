@@ -7,8 +7,11 @@ export class MusignyClassNameBasicBuilder extends Builder {
   constructor () {
     super()
 
-    const repository = new MusignyEntityNameBasicRepository()
-    const usecase = new MusignyClassNameBasicInteractor({ repository: repository })
+    const MusignyEntityNameBasicLowerRepository = new MusignyEntityNameBasicRepository()
+
+    const usecase = new MusignyClassNameBasicInteractor({
+      repository: MusignyEntityNameBasicLowerRepository
+    })
 
     this.controller = new MusignyClassNameBasicController(usecase)
     this.presenter = new MusignyClassNameBasicPresenter()

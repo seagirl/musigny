@@ -8,7 +8,7 @@ export interface MusignyClassNameBasicUseCaseOutput {
 }
 
 export interface MusignyClassNameBasicUseCaseDependency {
-  repository: MusignyEntityNameBasicRepository;
+  MusignyEntityNameBasicLowerRepository: MusignyEntityNameBasicRepository;
 }
 
 export interface MusignyClassNameBasicUsecase extends Usecase {
@@ -16,10 +16,10 @@ export interface MusignyClassNameBasicUsecase extends Usecase {
 }
 
 export class MusignyClassNameBasicInteractor implements MusignyClassNameBasicUsecase, MusignyClassNameBasicUseCaseDependency {
-  repository: MusignyEntityNameBasicRepository
+  MusignyEntityNameBasicLowerRepository: MusignyEntityNameBasicRepository
 
   constructor (dependency: MusignyClassNameBasicUseCaseDependency) {
-    this.repository = dependency.repository
+    this.MusignyEntityNameBasicLowerRepository = dependency.MusignyEntityNameBasicLowerRepository
   }
 
   async execute (input: MusignyClassNameBasicUseCaseInput): Promise<MusignyClassNameBasicUseCaseOutput> {
