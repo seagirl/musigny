@@ -38,10 +38,16 @@ describe('Template', () => {
     const contet = `
       MusignyClassNameBasicKebab
       MusignyEntityNameBasicKebab
+      MusignyDBEntityNameBasicKebab
       MusignyClassNameBasicSnake
       MusignyEntityNameBasicSnake
+      MusignyDBEntityNameBasicSnake
+      MusignyClassNameBasicLower
+      MusignyEntityNameBasicLower
+      MusignyDBEntityNameBasicLower
       MusignyClassNameBasic
       MusignyEntityNameBasic
+      MusignyDBEntityNameBasic
       /entity-name
       basic.repository
       basic.entity
@@ -56,10 +62,16 @@ describe('Template', () => {
     expect(template.replaceVariables(contet, target)).toBe(`
       get-users
       user
+      users
       get_users
       user
+      users
+      getUsers
+      user
+      users
       GetUsers
       User
+      Users
       /user
       user.repository
       user.entity
