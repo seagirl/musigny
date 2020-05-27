@@ -25,7 +25,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   }
 
   async nextIdentifier (): Promise<number> {
-    const row = await getManager().createQueryBuilder()
+    const row = await this.manager.createQueryBuilder()
       .select([
         'nextval(\'MusignyEntityNameBasicSnakes_id_seq\'::regclass)::int as id'
       ])
