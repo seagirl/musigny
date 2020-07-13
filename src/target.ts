@@ -63,10 +63,10 @@ export class Target {
         return `domain/factory/${this.config}.factory`
       case Type.valueObject:
         return `domain/value-object/${this.config}.value-object`
+      case Type.repositoryInterface:
+        return `domain/repository/${this.config}.repository`
       case Type.usecase:
         return `app/usecase/entity-name/${this.config}.usecase`
-      case Type.repositoryInterface:
-        return `app/repository/${this.config}.repository`
       case Type.adapter:
         return `web/adapter/entity-name/${this.config}.adapter`
       case Type.controller:

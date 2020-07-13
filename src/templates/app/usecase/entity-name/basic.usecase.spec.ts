@@ -1,5 +1,5 @@
 import { MusignyClassNameBasicInteractor } from './basic.usecase'
-import { MockMusignyEntityNameBasicRepository } from '../../repository/basic.repository'
+import { MockMusignyEntityNameBasicRepository } from '../../../domain/repository/basic.repository'
 
 const MusignyEntityNameBasicLowerRepository = new MockMusignyEntityNameBasicRepository()
 

@@ -119,7 +119,7 @@ export class Parser {
     }
 
     if (type === Type.repository) {
-      if (category === Category.app) {
+      if (category === Category.domain || category === Category.app) {
         return Type.repositoryInterface
       }
     }

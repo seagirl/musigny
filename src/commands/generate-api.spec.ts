@@ -9,7 +9,7 @@ describe('generate-api command', () => {
     mockFS({
       'src/templates/domain/entity/basic.entity.ts': 'dummy',
       'src/templates/domain/factory/basic.factory.ts': 'dummy',
-      'src/templates/app/repository/basic.repository.ts': 'dummy',
+      'src/templates/domain/repository/basic.repository.ts': 'dummy',
       'src/templates/app/usecase/entity-name/basic.usecase.ts': 'dummy',
       'src/templates/db/repository/basic.repository.ts': 'dummy',
       'src/templates/db/entity/basic.entity.ts': 'dummy',
@@ -35,7 +35,7 @@ describe('generate-api command', () => {
 
     expect(fs.existsSync('test-out/src/domain/entity/user.entity.ts')).toBe(true)
     expect(fs.existsSync('test-out/src/domain/factory/user.factory.ts')).toBe(true)
-    expect(fs.existsSync('test-out/src/app/repository/user.repository.ts')).toBe(true)
+    expect(fs.existsSync('test-out/src/domain/repository/user.repository.ts')).toBe(true)
     expect(fs.existsSync('test-out/src/app/usecase/user/get-users.usecase.ts')).toBe(true)
     expect(fs.existsSync('test-out/src/db/repository/user.repository.ts')).toBe(true)
     expect(fs.existsSync('test-out/src/db/entity/users.ts')).toBe(true)

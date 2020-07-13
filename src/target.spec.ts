@@ -11,11 +11,11 @@ describe('Target', () => {
     expect(new Target('domain/value-object/user.value-object', Category.domain, Type.valueObject, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
       .toEqual('domain/value-object/basic.value-object')
 
+    expect(new Target('domain/repository/user.repository', Category.app, Type.repositoryInterface, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
+      .toEqual('domain/repository/basic.repository')
+
     expect(new Target('app/usecase/user/get-users.usecase', Category.app, Type.usecase, APIType.index, 'get-users', 'user', 'user', Config.basic).templatePath)
       .toEqual('app/usecase/entity-name/basic.usecase')
-
-    expect(new Target('app/repository/user.repository', Category.app, Type.repositoryInterface, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
-      .toEqual('app/repository/basic.repository')
 
     expect(new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user', 'user', Config.basic).templatePath)
       .toEqual('web/adapter/entity-name/basic.adapter')

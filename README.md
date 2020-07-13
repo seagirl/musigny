@@ -15,7 +15,7 @@ musigny generate-api get-users user
 
 musigny generate domain/entity/user.entity
 musigny generate domain/factory/user.factory
-musigny generate app/repository/user.repository
+musigny generate domain/repository/user.repository
 musigny generate app/usecase/user/get-users.usecase
 musigny generate db/repository/user.repository
 musigny generate db/entity/users
