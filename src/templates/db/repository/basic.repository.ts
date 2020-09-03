@@ -1,15 +1,18 @@
 import { EntityManager, getManager, SelectQueryBuilder } from 'typeorm'
-import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput, SearchOutput, SearchSortKey } from '../../app/repository/basic.repository'
+import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput, SearchOutput, SearchSortKey } from '../../domain/repository/basic.repository'
 import { SortOrder } from '../../core'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
 import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
 import { MusignyDBEntityNameBasic } from '../entity/basic.db-entity'
 
+export interface MusignyEntityNameBasicRow {
+  id: number
+}
+
 export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   private manager: EntityManager = getManager()
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private createSelectQuery (): SelectQueryBuilder<any> {
+  private createSelectQuery (): SelectQueryBuilder<MusignyDBEntityNameBasic> {
     return this.manager.createQueryBuilder()
       .select([
         'MusignyEntityNameBasicSnakes.id as id'
@@ -17,8 +20,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
       .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private translate (row: any): MusignyEntityNameBasicEntity {
+  private translate (row: MusignyEntityNameBasicRow): MusignyEntityNameBasicEntity {
     return MusignyEntityNameBasicFactory.create({
       id: row.id,
     })
@@ -54,7 +56,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
 
     query.addOrderBy('MusignyEntityNameBasicSnakes.id', SortOrder.DESC)
 
-    const rows = await query.getRawMany()
+    const rows: MusignyEntityNameBasicRow[] = await query.getRawMany()
 
     let hasNext = false
     if (rows.length > limit) {
@@ -73,7 +75,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   }
 
   async find (id: number): Promise<MusignyEntityNameBasicEntity | undefined> {
-    const row = await this.createSelectQuery()
+    const row: MusignyEntityNameBasicRow = await this.createSelectQuery()
       .where('MusignyEntityNameBasicSnakes.id = :id', { id: id })
       .orderBy('MusignyEntityNameBasicSnakes.id')
       .getRawOne()
