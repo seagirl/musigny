@@ -10,7 +10,11 @@ export interface MusignyEntityNameBasicRow {
 }
 
 export class MusignyEntityNameBasicRepository implements RepositoryInterface {
-  private manager: EntityManager = getManager()
+  private manager: EntityManager
+
+  constructor (manager: EntityManager = getManager()) {
+    this.manager = manager
+  }
 
   private createSelectQuery (): SelectQueryBuilder<MusignyDBEntityNameBasic> {
     return this.manager.createQueryBuilder()
