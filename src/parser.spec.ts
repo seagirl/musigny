@@ -21,7 +21,7 @@ describe('Parser', () => {
       .toEqual(new Target('app/usecase/user/get-users.usecase', Category.app, Type.usecase, APIType.index, 'get-users', 'user', 'users'))
 
     expect(Parser.parse('app/usecase/user/translator'))
-      .toEqual(new Target('app/usecase/user/translator', Category.app, Type.translator, APIType.unknown, 'user', 'user', 'users'))
+      .toEqual(new Target('app/usecase/user/translator', Category.app, Type.translator, APIType.unknown, 'translator', 'user', 'users'))
 
     expect(Parser.parse('db/repository/user.repository'))
       .toEqual(new Target('db/repository/user.repository', Category.db, Type.repository, APIType.unknown, 'user', 'user', 'users'))

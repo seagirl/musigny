@@ -75,7 +75,23 @@ export class Target {
         }
         break
       case Type.translator:
-        return 'app/usecase/entity-name/translator'
+        if (this.category === Category.app) {
+          return 'app/usecase/entity-name/translator'
+        }
+        else if (this.category === Category.web) {
+          return `web/adapter/${this.config}.translator`
+        }
+        break
+      case Type.adapter:
+        return `web/adapter/entity-name/${this.config}.adapter`
+      case Type.controller:
+        return `web/adapter/entity-name/${this.config}.controller`
+      case Type.presenter:
+        return `web/adapter/entity-name/${this.config}.presenter`
+      case Type.viewModel:
+        return `web/view-model/${this.config}.view-model`
+      case Type.builder:
+        return `web/builder/entity-name/${this.config}.builder`
       case Type.api:
         return `web/express/api/${this.config}.api`
       case Type.handler:

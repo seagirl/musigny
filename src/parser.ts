@@ -72,7 +72,7 @@ export class Parser {
     this.typeName = typeNameFromFile || typeNameFromPath || ''
 
     // ToDo: This is not good but...
-    if (this.className == 'translator') {
+    if (this.categoryName == 'app' && this.className == 'translator') {
       this.typeName = this.className
     }
 

@@ -18,7 +18,7 @@ describe('Target', () => {
       .toEqual('app/usecase/entity-name/basic.usecase')
 
     expect(new Target('app/usecase/user/translator', Category.app, Type.translator, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
-      .toEqual('web/adapter/basic.translator')
+      .toEqual('app/usecase/entity-name/translator')
 
     expect(new Target('web/express/api/user.api', Category.web, Type.api, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
       .toEqual('web/express/api/basic.api')
