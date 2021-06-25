@@ -20,6 +20,11 @@ export enum Type {
   repositoryInterface = 'repository-interface',
   api                 = 'api',
   handler             = 'handler',
+  adapter             = 'adapter',
+  controller          = 'controller',
+  presenter           = 'presenter',
+  viewModel           = 'view-model',
+  builder             = 'builder',
   repository          = 'repository',
   unknown             = 'unknown',
 }
@@ -62,7 +67,13 @@ export class Target {
       case Type.repositoryInterface:
         return `domain/repository/${this.config}.repository`
       case Type.usecase:
-        return `app/usecase/entity-name/${this.config}.usecase`
+        if (this.category === Category.app) {
+          return `app/usecase/entity-name/${this.config}.usecase`
+        }
+        else if (this.category === Category.web) {
+          return `web/adapter/${this.config}.translator`
+        }
+        break
       case Type.translator:
         return 'app/usecase/entity-name/translator'
       case Type.api:

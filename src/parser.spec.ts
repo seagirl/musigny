@@ -31,6 +31,15 @@ describe('Parser', () => {
 
     expect(Parser.parse('web/express/api/user.api'))
       .toEqual(new Target('web/express/api/user.api', Category.web, Type.api, APIType.unknown, 'user', 'user', 'users'))
+
+    expect(Parser.parse('web/adapter/user.translator'))
+      .toEqual(new Target('web/adapter/user.translator', Category.web, Type.translator, APIType.unknown, 'user', 'user', 'users'))
+
+    expect(Parser.parse('web/adapter/user/get-users.adapter'))
+      .toEqual(new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user', 'users'))
+
+    expect(Parser.parse('web/builder/user/get-users.builder'))
+      .toEqual(new Target('web/builder/user/get-users.builder', Category.web, Type.builder, APIType.index, 'get-users', 'user', 'users'))
   })
 
   it('parse with option', () => {

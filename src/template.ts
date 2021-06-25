@@ -60,6 +60,7 @@ export class Template {
 
     content = content.replace(/basic\.usecase/g, `${Util.kebabCase(target.className)}.usecase`)
     content = content.replace(/basic\.handler/g, `${Util.kebabCase(target.className)}.handler`)
+    content = content.replace(/basic\.adapter/g, `${Util.kebabCase(target.className)}.adapter`)
 
     return content
   }
