@@ -1,4 +1,5 @@
 import supertest from 'supertest'
+import { checkStatus } from '../../../core/test/supertest'
 import Application from '../app'
 
 let testId: number
@@ -22,51 +23,32 @@ describe('MusignyEntityNameBasic API', () => {
   // musigny-new     .send({
   // musigny-new       title: 'hogehoge'
   // musigny-new     })
+  // musigny-new   checkStatus(response)
 
-  // musigny-new   if (response.status != 200)
-  // musigny-new     console.log(response.text)
-
-  // musigny-new   expect(response.status).toBe(200)
   // musigny-new   testId = response.body.id
   // musigny-new })
 
   // musigny-index it('GET /api/MusignyEntityNameBasicSnakes', async () => {
   // musigny-index   const request = supertest(app.express)
   // musigny-index   const response = await request.get('/api/MusignyEntityNameBasicSnakes')
-
-  // musigny-index   if (response.status != 200)
-  // musigny-index     console.log(response.text)
-
-  // musigny-index   expect(response.status).toBe(200)
+  // musigny-index   checkStatus(response)
   // musigny-index })
 
   // musigny-show it('GET /api/MusignyEntityNameBasicSnakes/:id', async () => {
   // musigny-show   const request = supertest(app.express)
   // musigny-show   const response = await request.get('/api/MusignyEntityNameBasicSnakes/' + testId)
-
-  // musigny-show   if (response.status != 200)
-  // musigny-show     console.log(response.text)
-
-  // musigny-show   expect(response.status).toBe(200)
+  // musigny-show   checkStatus(response)
   // musigny-show })
 
   // musigny-edit it('PUT /api/MusignyEntityNameBasicSnakes/:id', async () => {
   // musigny-edit   const request = supertest(app.express)
   // musigny-edit   const response = await request.put('/api/MusignyEntityNameBasicSnakes/' + testId)
-
-  // musigny-edit   if (response.status != 200)
-  // musigny-edit     console.log(response.text)
-
-  // musigny-edit   expect(response.status).toBe(200)
+  // musigny-edit   checkStatus(response)
   // musigny-edit })
 
   // musigny-destroy it('DELETE /api/MusignyEntityNameBasicSnakes/:id', async () => {
   // musigny-destroy   const request = supertest(app.express)
   // musigny-destroy   const response = await request.delete('/api/MusignyEntityNameBasicSnakes/' + testId)
-
-  // musigny-destroy   if (response.status != 200)
-  // musigny-destroy     console.log(response.text)
-
-  // musigny-destroy   expect(response.status).toBe(200)
+  // musigny-destroy   checkStatus(response)
   // musigny-destroy })
 })

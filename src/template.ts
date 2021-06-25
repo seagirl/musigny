@@ -59,7 +59,7 @@ export class Template {
     content = content.replace(/basic\.factory/g, `${Util.kebabCase(target.entityName)}.factory`)
 
     content = content.replace(/basic\.usecase/g, `${Util.kebabCase(target.className)}.usecase`)
-    content = content.replace(/basic\.adapter/g, `${Util.kebabCase(target.className)}.adapter`)
+    content = content.replace(/basic\.handler/g, `${Util.kebabCase(target.className)}.handler`)
 
     return content
   }

@@ -32,3 +32,5 @@ export class MockMusignyEntityNameBasicRepository implements MusignyEntityNameBa
   save (): Promise<void> { return Promise.resolve() }
   delete (): Promise<void> { return Promise.resolve() }
 }
+
+export const mockMusignyEntityNameBasicRepository = new MockMusignyEntityNameBasicRepository()

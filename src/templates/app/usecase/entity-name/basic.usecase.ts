@@ -1,28 +1,19 @@
 import { Usecase } from '../../../core'
 import { MusignyEntityNameBasicRepository } from '../../../domain/repository/basic.repository'
 
-export interface MusignyClassNameBasicUseCaseInput {
-}
-
-export interface MusignyClassNameBasicUseCaseOutput {
-}
-
-export interface MusignyClassNameBasicUseCaseDependency {
+export interface Props {
   MusignyEntityNameBasicLowerRepository: MusignyEntityNameBasicRepository;
 }
 
-export interface MusignyClassNameBasicUsecase extends Usecase {
-  execute (input: MusignyClassNameBasicUseCaseInput): Promise<MusignyClassNameBasicUseCaseOutput>;
+export interface Request {
 }
 
-export class MusignyClassNameBasicInteractor implements MusignyClassNameBasicUsecase, MusignyClassNameBasicUseCaseDependency {
-  MusignyEntityNameBasicLowerRepository: MusignyEntityNameBasicRepository
+export type Response = Record<string, unknown>
 
-  constructor (dependency: MusignyClassNameBasicUseCaseDependency) {
-    this.MusignyEntityNameBasicLowerRepository = dependency.MusignyEntityNameBasicLowerRepository
-  }
+export class MusignyClassNameBasicInteractor implements Usecase {
+  constructor (readonly props: Props) {}
 
-  async execute (input: MusignyClassNameBasicUseCaseInput): Promise<MusignyClassNameBasicUseCaseOutput> {
+  async execute (input: Request): Promise<Response> {
     return {}
   }
 }

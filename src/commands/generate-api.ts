@@ -22,14 +22,10 @@ export const generateAPI = (apiName: string, entityName: string, options: Option
   options.dbEntityName = dbEntityName
 
   generate(`domain/entity/${entityName}.entity`, options)
-  generate(`domain/factory/${entityName}.factory`, options)
   generate(`domain/repository/${entityName}.repository`, options)
   generate(`app/usecase/${entityName}/${apiName}.usecase`, options)
+  generate(`app/usecase/${entityName}/translator`, options)
   generate(`db/repository/${entityName}.repository`, options)
-  generate(`db/entity/${dbEntityName}`, options)
-  generate(`web/adapter/${entityName}.translator`, options)
-  generate(`web/adapter/${entityName}/${apiName}.adapter`, options)
-  generate(`web/builder/${entityName}/${apiName}.builder`, options)
   generate(`web/express/api/${entityName}.api`, options)
-  generate(`web/view-model/${entityName}.view-model`, options)
+  generate(`web/express/api/${entityName}/${apiName}.handler`, options)
 }

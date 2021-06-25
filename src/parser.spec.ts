@@ -20,20 +20,14 @@ describe('Parser', () => {
     expect(Parser.parse('app/usecase/user/get-users.usecase'))
       .toEqual(new Target('app/usecase/user/get-users.usecase', Category.app, Type.usecase, APIType.index, 'get-users', 'user', 'users'))
 
+    expect(Parser.parse('app/usecase/user/translator'))
+      .toEqual(new Target('app/usecase/user/translator', Category.app, Type.translator, APIType.unknown, 'user', 'user', 'users'))
+
     expect(Parser.parse('db/repository/user.repository'))
       .toEqual(new Target('db/repository/user.repository', Category.db, Type.repository, APIType.unknown, 'user', 'user', 'users'))
 
     expect(Parser.parse('db/entity/users'))
       .toEqual(new Target('db/entity/users', Category.db, Type.entity, APIType.unknown, 'users', 'users', 'users'))
-
-    expect(Parser.parse('web/adapter/user.translator'))
-      .toEqual(new Target('web/adapter/user.translator', Category.web, Type.translator, APIType.unknown, 'user', 'user', 'users'))
-
-    expect(Parser.parse('web/adapter/user/get-users.adapter'))
-      .toEqual(new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user', 'users'))
-
-    expect(Parser.parse('web/builder/user/get-users.builder'))
-      .toEqual(new Target('web/builder/user/get-users.builder', Category.web, Type.builder, APIType.index, 'get-users', 'user', 'users'))
 
     expect(Parser.parse('web/express/api/user.api'))
       .toEqual(new Target('web/express/api/user.api', Category.web, Type.api, APIType.unknown, 'user', 'user', 'users'))

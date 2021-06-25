@@ -16,14 +16,10 @@ export enum Type {
   factory             = 'factory',
   valueObject         = 'value-object',
   usecase             = 'usecase',
-  repositoryInterface = 'repository-interface',
-  adapter             = 'adapter',
-  controller          = 'controller',
-  presenter           = 'presenter',
   translator          = 'translator',
-  viewModel           = 'view-model',
-  builder             = 'builder',
+  repositoryInterface = 'repository-interface',
   api                 = 'api',
+  handler             = 'handler',
   repository          = 'repository',
   unknown             = 'unknown',
 }
@@ -67,20 +63,12 @@ export class Target {
         return `domain/repository/${this.config}.repository`
       case Type.usecase:
         return `app/usecase/entity-name/${this.config}.usecase`
-      case Type.adapter:
-        return `web/adapter/entity-name/${this.config}.adapter`
-      case Type.controller:
-        return `web/adapter/entity-name/${this.config}.controller`
-      case Type.presenter:
-        return `web/adapter/entity-name/${this.config}.presenter`
       case Type.translator:
-        return `web/adapter/${this.config}.translator`
-      case Type.viewModel:
-        return `web/view-model/${this.config}.view-model`
-      case Type.builder:
-        return `web/builder/entity-name/${this.config}.builder`
+        return 'app/usecase/entity-name/translator'
       case Type.api:
         return `web/express/api/${this.config}.api`
+      case Type.handler:
+        return `web/express/api/entity-name/${this.config}.handler`
       case Type.repository:
         return `db/repository/${this.config}.repository`
     }

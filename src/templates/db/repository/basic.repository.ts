@@ -1,33 +1,33 @@
+import { DateTime } from 'luxon'
 import { EntityManager, getManager, SelectQueryBuilder } from 'typeorm'
-import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput, SearchOutput, SearchSortKey } from '../../domain/repository/basic.repository'
 import { SortOrder } from '../../core'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
-import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
-import { MusignyDBEntityNameBasic } from '../entity/basic.db-entity'
+import { MusignyEntityNameBasicRepository as RepositoryInterface, SearchInput, SearchOutput, SearchSortKey } from '../../domain/repository/basic.repository'
 
 export interface MusignyEntityNameBasicRow {
-  id: number
+  id: number;
 }
 
 export class MusignyEntityNameBasicRepository implements RepositoryInterface {
+  private tableName = 'MusignyEntityNameBasicSnakes'
+
   private manager: EntityManager
 
   constructor (manager: EntityManager = getManager()) {
     this.manager = manager
   }
 
-  private createSelectQuery (): SelectQueryBuilder<MusignyDBEntityNameBasic> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private createSelectQuery (): SelectQueryBuilder<any> {
     return this.manager.createQueryBuilder()
       .select([
         'MusignyEntityNameBasicSnakes.id as id'
       ])
-      .from(MusignyDBEntityNameBasic, 'MusignyEntityNameBasicSnakes')
+      .from(this.tableName, this.tableName)
   }
 
   private translate (row: MusignyEntityNameBasicRow): MusignyEntityNameBasicEntity {
-    return MusignyEntityNameBasicFactory.create({
-      id: row.id,
-    })
+    return new MusignyEntityNameBasicEntity(row.id)
   }
 
   async nextIdentifier (): Promise<number> {
@@ -92,7 +92,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   }
 
   async save (entity: MusignyEntityNameBasicEntity): Promise<void> {
-    const repository = this.manager.getRepository(MusignyDBEntityNameBasic)
+    const repository = this.manager.getRepository(this.tableName)
     const row = await repository.findOne({ where: { id: entity.id } })
 
     if (!row) {
@@ -102,14 +102,14 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
 
       await this.manager.createQueryBuilder()
         .insert()
-        .into(MusignyDBEntityNameBasic, Object.keys(values))
+        .into(this.tableName, Object.keys(values))
         .values(values)
         .execute()
     } else {
       await this.manager.createQueryBuilder()
-        .update(MusignyDBEntityNameBasic)
+        .update(this.tableName)
         .set({
-          id: entity.id
+          updatedAt: DateTime.local()
         })
         .where('id = :id', { id: entity.id })
         .execute()
@@ -119,7 +119,7 @@ export class MusignyEntityNameBasicRepository implements RepositoryInterface {
   async delete (entity: MusignyEntityNameBasicEntity): Promise<void> {
     await this.manager.createQueryBuilder()
       .delete()
-      .from(MusignyDBEntityNameBasic)
+      .from(this.tableName)
       .where({ id: entity.id })
       .execute()
   }

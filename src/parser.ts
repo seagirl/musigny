@@ -68,8 +68,18 @@ export class Parser {
     this.categoryName = pathFlagments.shift()
 
     const typeNameFromPath = pathFlagments.shift()
-    const tyoeNameFromFile = nameFlagments.shift()
-    this.typeName = tyoeNameFromFile || typeNameFromPath || ''
+    const typeNameFromFile = nameFlagments.shift()
+    this.typeName = typeNameFromFile || typeNameFromPath || ''
+
+    // ToDo: This is not good but...
+    if (this.className == 'translator') {
+      this.typeName = this.className
+    }
+
+    // web/express/api ディレクトリのケースの調整
+    if (pathFlagments[0] == 'api') {
+      pathFlagments.shift()
+    }
 
     // EntityName should be same as ClassName in case of Entity
     if (this.typeName === Type.entity) {
