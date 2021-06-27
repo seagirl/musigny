@@ -17,8 +17,10 @@ export const init = async (input: string, options: Options): Promise<void> => {
 
   try {
     await GitHubZipFileDownloader.donwloadAndExtract(
-      'https://github.com/seagirl/typescript-template/archive/master.zip',
-      'typescript-template-master',
+      // 'https://github.com/seagirl/typescript-template/archive/master.zip',
+      // 'typescript-template-master'
+      'https://github.com/seagirl/typescript-template/archive/refs/heads/develop.zip',
+      'typescript-template-develop',
       destination
     )
 

@@ -1,8 +1,8 @@
-import { SearchSortKey } from '../../app/repository/basic.repository'
+
 import { SortOrder } from '../../core'
 import { DB } from '../../db'
 import { MusignyEntityNameBasicEntity } from '../../domain/entity/basic.entity'
-import { MusignyEntityNameBasicFactory } from '../../domain/factory/basic.factory'
+import { SearchSortKey } from '../../domain/repository/basic.repository'
 import { MusignyEntityNameBasicRepository } from './basic.repository'
 
 const db = new DB()
@@ -21,7 +21,7 @@ describe('MusignyEntityNameBasicRepository', () => {
     const repository = new MusignyEntityNameBasicRepository()
 
     const id = await repository.nextIdentifier()
-    const entity = MusignyEntityNameBasicFactory.create({ id: id })
+    const entity = new MusignyEntityNameBasicEntity(id)
 
     testId = id
 
@@ -71,7 +71,7 @@ describe('MusignyEntityNameBasicRepository', () => {
       return
     }
 
-    const newEntity = MusignyEntityNameBasicFactory.createFrom(entity, {})
+    const newEntity = entity
     await repository.save(newEntity)
 
     const result = await repository.find(newEntity.id)

@@ -17,6 +17,12 @@ describe('Target', () => {
     expect(new Target('app/usecase/user/get-users.usecase', Category.app, Type.usecase, APIType.index, 'get-users', 'user', 'user', Config.basic).templatePath)
       .toEqual('app/usecase/entity-name/basic.usecase')
 
+    expect(new Target('app/usecase/user/translator', Category.app, Type.translator, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
+      .toEqual('app/usecase/entity-name/translator')
+
+    expect(new Target('web/express/api/user.api', Category.web, Type.api, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
+      .toEqual('web/express/api/basic.api')
+
     expect(new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user', 'user', Config.basic).templatePath)
       .toEqual('web/adapter/entity-name/basic.adapter')
 
@@ -34,9 +40,6 @@ describe('Target', () => {
 
     expect(new Target('web/builder/user/get-users.builder', Category.web, Type.builder, APIType.index, 'get-users', 'user', 'user', Config.basic).templatePath)
       .toEqual('web/builder/entity-name/basic.builder')
-
-    expect(new Target('web/express/api/user.api', Category.web, Type.api, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
-      .toEqual('web/express/api/basic.api')
 
     expect(new Target('db/repository/user.repository', Category.db, Type.repository, APIType.unknown, 'user', 'user', 'user', Config.basic).templatePath)
       .toEqual('db/repository/basic.repository')

@@ -1,17 +1,24 @@
+import { calledTimes, mockReturnValues } from '../../../core/test/mock'
+import { mockMusignyEntityNameBasicRepository } from '../../../domain/repository/basic.repository'
 import { MusignyClassNameBasicInteractor } from './basic.usecase'
-import { MockMusignyEntityNameBasicRepository } from '../../../domain/repository/basic.repository'
 
-const MusignyEntityNameBasicLowerRepository = new MockMusignyEntityNameBasicRepository()
+const dependency = {
+  MusignyEntityNameBasicLowerRepository: mockMusignyEntityNameBasicRepository
+}
 
-const interactor = new MusignyClassNameBasicInteractor({
-  MusignyEntityNameBasicLowerRepository: MusignyEntityNameBasicLowerRepository
-})
+const interactor = new MusignyClassNameBasicInteractor(dependency)
 
-let MusignyEntityNameBasicLowerRepositorySearchSpy: jest.SpyInstance
+interface Scenario {
+  MusignyEntityNameBasicLowerRepositorySearchSpy: jest.SpyInstance;
+}
+
+let scenario: Scenario
 
 describe('MusignyClassNameBasicInteractor', () => {
   beforeEach(() => {
-    //MusignyEntityNameBasicLowerRepositorySearchSpy = jest.spyOn(repository, 'search')
+    scenario = {
+      MusignyEntityNameBasicLowerRepositorySearchSpy: jest.spyOn(mockMusignyEntityNameBasicRepository, 'search')
+    }
   })
 
   afterEach(() => {
@@ -20,14 +27,17 @@ describe('MusignyClassNameBasicInteractor', () => {
   })
 
   it('execute', async () => {
-    //MusignyEntityNameBasicLowerRepositorySearchSpy.mockReturnValue(Promise.resolve({ entities: [], hasNext: false }))
+    mockReturnValues(scenario, {
+      MusignyEntityNameBasicLowerRepositorySearchSpy: Promise.resolve([])
+    })
 
     const result = await interactor.execute({})
     expect(result).toEqual({
-      hasNext: false,
-      entities: []
     })
 
-    //expect(MusignyEntityNameBasicLowerRepositorySearchSpy).toHaveBeenCalledTimes(1)
+    expect(calledTimes(scenario))
+      .toEqual({
+        MusignyEntityNameBasicLowerRepositorySearchSpy: 1,
+      })
   })
 })

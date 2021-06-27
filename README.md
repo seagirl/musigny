@@ -17,11 +17,7 @@ musigny generate domain/entity/user.entity
 musigny generate domain/factory/user.factory
 musigny generate domain/repository/user.repository
 musigny generate app/usecase/user/get-users.usecase
+musigny generate app/usecase/user/translator
 musigny generate db/repository/user.repository
-musigny generate db/entity/users
-musigny generate web/adapter/user.translator
-musigny generate web/adapter/user/get-users.adapter
-musigny generate web/builder/user/get-users.builder
-musigny generate web/view-model/user.view-model
 musigny generate web/express/api/user.api
 ```

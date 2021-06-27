@@ -22,7 +22,7 @@ describe('Template', () => {
 
   it('renderTo', () => {
     const template = new Template(templatePath)
-    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user', 'users')
+    const target = new Target('app/usecase/user/get-users.usecase', Category.app, Type.usecase, APIType.index, 'get-users', 'user', 'users')
     const outputPath = 'test-out/template.ts'
     template.renderTo(outputPath, target, false)
     expect(fs.existsSync(outputPath)).toEqual(true)
@@ -33,7 +33,7 @@ describe('Template', () => {
 
   it('replaceVariables', () => {
     const template = new Template(templatePath)
-    const target = new Target('web/adapter/user/get-users.adapter', Category.web, Type.adapter, APIType.index, 'get-users', 'user', 'users')
+    const target = new Target('app/usecase/user/get-users.usecase', Category.web, Type.usecase, APIType.index, 'get-users', 'user', 'users')
 
     const contet = `
       MusignyClassNameBasicKebab
