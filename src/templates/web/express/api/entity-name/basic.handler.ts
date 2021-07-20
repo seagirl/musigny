@@ -6,6 +6,7 @@ import { Presenter } from '../../../../core/web/express/presenter'
 import { mergeParameters, Request } from '../../../../core/web/express/request'
 import { translateRecord } from '../../../../core/web/translator'
 import { MusignyEntityNameBasicRepository } from '../../../../db/repository/basic.repository'
+import { Transaction } from '../../../../db/transaction'
 
 class MusignyClassNameBasicController implements Controller {
   constructor (public interactor: Usecase) {}
@@ -26,10 +27,10 @@ class MusignyClassNameBasicPresenter implements Presenter {
 }
 
 export class MusignyClassNameBasicHandler extends Handler {
-  constructor () {
+  constructor (private transaction = new Transaction()) {
     super()
 
-    const MusignyEntityNameBasicLowerRepository = new MusignyEntityNameBasicRepository()
+    const MusignyEntityNameBasicLowerRepository = new MusignyEntityNameBasicRepository(transaction.manager)
 
     const usecase = new MusignyClassNameBasicInteractor({
       MusignyEntityNameBasicLowerRepository: MusignyEntityNameBasicLowerRepository,
@@ -37,5 +38,9 @@ export class MusignyClassNameBasicHandler extends Handler {
 
     this.controller = new MusignyClassNameBasicController(usecase)
     this.presenter = new MusignyClassNameBasicPresenter()
+  }
+
+  async finish(): Promise<void> {
+    await this.transaction.close()
   }
 }
